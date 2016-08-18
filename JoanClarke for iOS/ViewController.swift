@@ -21,6 +21,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBOutlet weak var InputField: UITextField!
 
+    @IBOutlet weak var SearchButton: UIButton!
+    
+    
+    @IBOutlet weak var OutputField: UITextView!
+    @IBAction func OnEditingBegin(sender: AnyObject)
+    {
+        SearchButton.enabled = true //UIControlState.Normal
+    }
 }
 
