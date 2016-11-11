@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1909" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1912" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -19,12 +19,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your search query here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swn-9U-2qi">
-                                <rect key="frame" x="20" y="41" width="396" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="41"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" searchField="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="377" id="ZPa-f1-QCf"/>
+                                    <constraint firstAttribute="height" constant="30" id="rQH-cC-LOs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -32,23 +32,8 @@
                                     <action selector="OnEditingBegin:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="lcN-ca-D2T"/>
                                 </connections>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Random text here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0Yg-Ms-IA4">
-                                <rect key="frame" x="73" y="177" width="457" height="288"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="288" id="mGw-4W-DD4"/>
-                                </constraints>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rq6-0u-UYG">
-                                <rect key="frame" x="431" y="36" width="99" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="HpJ-aV-IF2"/>
-                                    <constraint firstAttribute="width" constant="99" id="ZVI-cd-SMd"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rq6-0u-UYG">
+                                <rect key="frame" x="243" y="36" width="337" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Search">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,17 +41,21 @@
                                 </state>
                                 <state key="disabled" title="DisabledSearch"/>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Random text here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0Yg-Ms-IA4">
+                                <rect key="frame" x="72" y="177" width="457" height="288"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0Yg-Ms-IA4" firstAttribute="trailing" secondItem="Rq6-0u-UYG" secondAttribute="trailing" id="1R1-MB-NVj"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0Yg-Ms-IA4" secondAttribute="bottom" constant="135" id="boj-jT-NKM"/>
-                            <constraint firstItem="Rq6-0u-UYG" firstAttribute="leading" secondItem="Swn-9U-2qi" secondAttribute="trailing" constant="13" id="dCo-yP-ByV"/>
-                            <constraint firstItem="Swn-9U-2qi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="21" id="hpb-n3-pwA"/>
-                            <constraint firstItem="Rq6-0u-UYG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="iSf-fL-aAh"/>
-                            <constraint firstItem="0Yg-Ms-IA4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="53" id="lvM-Cy-4sh"/>
-                            <constraint firstItem="Swn-9U-2qi" firstAttribute="top" secondItem="Rq6-0u-UYG" secondAttribute="top" id="o8D-Js-aLR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0Yg-Ms-IA4" secondAttribute="trailing" constant="50" id="tJE-Sr-hHr"/>
+                            <constraint firstItem="Swn-9U-2qi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="61b-RI-X2L"/>
+                            <constraint firstItem="Rq6-0u-UYG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="Eb8-0S-hCS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rq6-0u-UYG" secondAttribute="trailing" id="XOC-oY-3Qf"/>
+                            <constraint firstItem="Swn-9U-2qi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="21" id="sfD-dK-N05"/>
                         </constraints>
                     </view>
                     <connections>

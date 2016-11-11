@@ -14,6 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("We have no clue what we're doing")
+        let r = CGRect(x: 0, y: 0, width: SearchButton.frame.minX - InputField.frame.minX - 15, height: InputField.frame.height)
+        InputField.frame = r
+        InputField.setNeedsDisplay()
     }
 
     override func didReceiveMemoryWarning() {

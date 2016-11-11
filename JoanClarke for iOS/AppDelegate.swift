@@ -16,6 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+       /* let mainClaim = Claim(maxLength: 11, startIndex: 1, count: 2)
+        let str = mainClaim.ClaimedText("hello world")
+        print(str)
+
+        var claim2 = Claim(maxLength: 5)
+        claim2 = claim2.NextUnclaimedCharacter(1) // claims the first letter
+        claim2 = claim2.NextUnclaimedCharacter(2) // claims the next 2 letters after the first letter
+        print(claim2.ClaimedText("world"))
+        
+        claim2 = Claim(maxLength: 5)
+        var claimPrev : Claim?
+        claimPrev = claim2.NextUnclaimedCharacter(claimPrev)
+        print(claimPrev!.ClaimedText("world"))
+        claimPrev = claimPrev!.NextUnclaimedCharacter(claimPrev)
+        print(claimPrev!.ClaimedText("world")) */
         return true
     }
 
