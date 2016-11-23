@@ -31,6 +31,8 @@ enum PatternError: ErrorType
     case MismatchedBraces
     /// Unknown rule syntax
     case UnknownRule
+    /// Invalid token in anagram
+    case InvalidTokenInAnagram
     
     
 }

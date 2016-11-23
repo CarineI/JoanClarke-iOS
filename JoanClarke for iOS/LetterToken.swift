@@ -68,7 +68,12 @@ class LetterToken : Token
     
     override func MergeWith(second: Token, inAnagram: Bool) -> Token?
     {
-        // TODO: after letter sequence
+       if (!inAnagram && second is LetterToken)
+       {
+            var str = _letter
+            str.appendContentsOf((second as! LetterToken)._letter)
+            return LetterSequenceToken(letters: str)
+       }
         
         return nil
     }
