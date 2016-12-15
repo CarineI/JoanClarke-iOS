@@ -10,6 +10,9 @@
 		D50A40E91DB1B237005D26C9 /* LetterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50A40E81DB1B237005D26C9 /* LetterSet.swift */; };
 		D50A40EB1DB1C855005D26C9 /* LetterSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50A40EA1DB1C855005D26C9 /* LetterSetTests.swift */; };
 		D5396F501D8A2AFC003EF0CB /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5396F4F1D8A2AFC003EF0CB /* Claim.swift */; };
+		D563B5D81E023F3C00690051 /* WordDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = D563B5D71E023F3C00690051 /* WordDict.swift */; };
+		D563B5DA1E02412900690051 /* StubDict.txt in Resources */ = {isa = PBXBuildFile; fileRef = D563B5D91E02412900690051 /* StubDict.txt */; };
+		D563B5DC1E0241DA00690051 /* WordDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D563B5DB1E0241DA00690051 /* WordDictTests.swift */; };
 		D58B1E2B1DE52CD000168F07 /* LetterTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2A1DE52CD000168F07 /* LetterTokenTests.swift */; };
 		D58B1E2D1DE5306000168F07 /* LetterSequenceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2C1DE5306000168F07 /* LetterSequenceToken.swift */; };
 		D58B1E2F1DE535E300168F07 /* LetterSequenceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2E1DE535E300168F07 /* LetterSequenceTokenTests.swift */; };
@@ -51,6 +54,9 @@
 		D50A40E81DB1B237005D26C9 /* LetterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSet.swift; sourceTree = "<group>"; };
 		D50A40EA1DB1C855005D26C9 /* LetterSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSetTests.swift; sourceTree = "<group>"; };
 		D5396F4F1D8A2AFC003EF0CB /* Claim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
+		D563B5D71E023F3C00690051 /* WordDict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDict.swift; sourceTree = "<group>"; };
+		D563B5D91E02412900690051 /* StubDict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StubDict.txt; path = ../../../Desktop/StubDict.txt; sourceTree = "<group>"; };
+		D563B5DB1E0241DA00690051 /* WordDictTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDictTests.swift; sourceTree = "<group>"; };
 		D58B1E2A1DE52CD000168F07 /* LetterTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTokenTests.swift; sourceTree = "<group>"; };
 		D58B1E2C1DE5306000168F07 /* LetterSequenceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSequenceToken.swift; sourceTree = "<group>"; };
 		D58B1E2E1DE535E300168F07 /* LetterSequenceTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSequenceTokenTests.swift; sourceTree = "<group>"; };
@@ -112,8 +118,17 @@
 				D5B57E271DD5798D00381BC2 /* Token.swift */,
 				D5B57E291DD5820E00381BC2 /* LetterToken.swift */,
 				D58B1E2C1DE5306000168F07 /* LetterSequenceToken.swift */,
+				D563B5D71E023F3C00690051 /* WordDict.swift */,
 			);
 			name = Src;
+			sourceTree = "<group>";
+		};
+		D563B5D21E023C7300690051 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D563B5D91E02412900690051 /* StubDict.txt */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		D5D9E3941D6545300049BA65 = {
@@ -139,6 +154,7 @@
 		D5D9E39F1D6545300049BA65 /* JoanClarke for iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D563B5D21E023C7300690051 /* Assets */,
 				D5396F4C1D8A29B6003EF0CB /* Src */,
 				D5D9E3A01D6545300049BA65 /* AppDelegate.swift */,
 				D5D9E3A21D6545300049BA65 /* ViewController.swift */,
@@ -160,6 +176,7 @@
 				D5FD70351DCAC55100A8ECB9 /* RuleTests.swift */,
 				D58B1E2A1DE52CD000168F07 /* LetterTokenTests.swift */,
 				D58B1E2E1DE535E300168F07 /* LetterSequenceTokenTests.swift */,
+				D563B5DB1E0241DA00690051 /* WordDictTests.swift */,
 			);
 			path = "JoanClarke for iOSTests";
 			sourceTree = "<group>";
@@ -278,6 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D563B5DA1E02412900690051 /* StubDict.txt in Resources */,
 				D5D9E3AB1D6545300049BA65 /* LaunchScreen.storyboard in Resources */,
 				D5D9E3A81D6545300049BA65 /* Assets.xcassets in Resources */,
 				D5D9E3A61D6545300049BA65 /* Main.storyboard in Resources */,
@@ -312,6 +330,7 @@
 				D5396F501D8A2AFC003EF0CB /* Claim.swift in Sources */,
 				D5B57E2A1DD5820E00381BC2 /* LetterToken.swift in Sources */,
 				D5BBAAFA1DA5D9FE00D7C1A4 /* Candidate.swift in Sources */,
+				D563B5D81E023F3C00690051 /* WordDict.swift in Sources */,
 				D5D9E3A11D6545300049BA65 /* AppDelegate.swift in Sources */,
 				D5F851F41DC185E6008D1B5F /* Rule.swift in Sources */,
 				D5B57E281DD5798D00381BC2 /* Token.swift in Sources */,
@@ -323,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5CD31B31D9C9C0B0097F515 /* AppDelegate.swift in Sources */,
+				D563B5DC1E0241DA00690051 /* WordDictTests.swift in Sources */,
 				D58B1E2F1DE535E300168F07 /* LetterSequenceTokenTests.swift in Sources */,
 				D5FD70361DCAC55100A8ECB9 /* RuleTests.swift in Sources */,
 				D5BBAAFE1DA5E11600D7C1A4 /* Candidate_Tests.swift in Sources */,
