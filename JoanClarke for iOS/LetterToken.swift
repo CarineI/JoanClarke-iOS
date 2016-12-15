@@ -20,7 +20,7 @@ class LetterToken : Token
     }
     
     // TODO : Refact Claim.Stake to not throw and use fatal error instead
-    override func MatchSequential(candidate: Candidate) throws -> Bool
+    override func MatchSequential(candidate: Candidate) -> Bool
     {
         // No second tries
         if (_previousClaim != nil)
@@ -31,24 +31,24 @@ class LetterToken : Token
         let next = candidate.GetNextUnused()
         if(next.ClaimedText(candidate.Word) == _letter)
         {
-            try candidate.Stake(next)
+            candidate.Stake(next)
             _previousClaim = next
             return true
         }
         return false
     }
     
-    override func MatchAny(candidate: Candidate) throws -> Bool
+    override func MatchAny(candidate: Candidate) -> Bool
     {
         let match = candidate.Find(_previousClaim, ch: Letter)
         if (!match.IsEmpty())
         {
             if( _previousClaim != nil)
             {
-               try candidate.Free(_previousClaim!)
+                candidate.Free(_previousClaim!)
             }
             
-            try candidate.Stake(match)
+            candidate.Stake(match)
             _previousClaim = match
             return true
         }

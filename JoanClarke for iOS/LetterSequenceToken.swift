@@ -31,7 +31,7 @@ class LetterSequenceToken : Token
         let next = candidate.GetNextUnused(_letters.characters.count)
         if(next.ClaimedText(candidate.Word) == _letters)
         {
-            try candidate.Stake(next)
+            candidate.Stake(next)
             _previousClaim = next
             return true
         }

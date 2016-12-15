@@ -8,6 +8,17 @@
 
 import Foundation
 
+func VerifyElseCrash(b: Bool) -> Bool
+{
+    if (!b)
+    {
+        var n : Bool?
+        n = nil
+        return n!
+    }
+    return true
+}
+
 class Claim : Equatable
 {
     static private(set) var Empty : Claim = Claim(maxLength: 0)
@@ -160,29 +171,19 @@ class Claim : Equatable
     
     
     /// Combine two claims
-    static func CombineClaims(a: Claim, b: Claim) throws -> Claim
+    static func CombineClaims(a: Claim, b: Claim) -> Claim
     {
-        if (a._maxBits != b._maxBits)
-        {
-            throw PatternError.ClaimsOfDifferentLengths
-        }
+        VerifyElseCrash(a._maxBits == b._maxBits)
         
         let combined = Claim(maxLength: a._maxBits)
         combined._bits = a._bits | b._bits
         return combined;
     }
     
-    static func SeparateClaims(a: Claim, b: Claim) throws -> Claim
+    static func SeparateClaims(a: Claim, b: Claim) -> Claim
     {
-        if (a._maxBits != b._maxBits)
-        {
-            throw PatternError.ClaimsOfDifferentLengths
-        }
-
-        if (!a.IsSubclaimOf(b) && !b.IsSubclaimOf(a))
-        {
-            throw PatternError.ClaimMustBeSublaim
-        }
+        VerifyElseCrash(a._maxBits == b._maxBits)
+        VerifyElseCrash(a.IsSubclaimOf(b) || b.IsSubclaimOf(a))
         
         let separated = Claim(maxLength: a._maxBits)
         separated._bits = a._bits ^ b._bits;

@@ -30,57 +30,16 @@ class Candidate_Tests: XCTestCase {
     
     func testStake() {
         let candidate = Candidate(word: "Hello")
-        do
-        {
-            try candidate.Stake(Claim(maxLength: 5, startIndex: 0, count: 1))
-            XCTAssertEqual(candidate.GetAllRemaining(), Claim(maxLength: 5, startIndex: 1, count: 4))
-        }
-        catch
-        {
-            XCTFail()
-        }
         
-        do
-        {
-            try candidate.Stake(Claim(maxLength: 5, startIndex: 0, count: 1))
-            XCTFail()
-        }
-        catch PatternError.StakeOverlapsExistingClaim
-        {
-            // expected
-        }
-        catch
-        {
-            XCTFail()
-        }
+        candidate.Stake(Claim(maxLength: 5, startIndex: 0, count: 1))
+        XCTAssertEqual(candidate.GetAllRemaining(), Claim(maxLength: 5, startIndex: 1, count: 4))
     }
 
     func testFree() {
         let candidate = Candidate(word: "Hello")
-        do
-        {
-            try candidate.Stake(Claim(maxLength: 5, startIndex: 0, count: 2))
-            try candidate.Free(Claim(maxLength: 5, startIndex: 1, count: 1))
-            XCTAssertEqual(candidate.GetAllRemaining(), Claim(maxLength: 5, startIndex: 1, count: 4))
-        }
-        catch
-        {
-            XCTFail()
-        }
-
-        do
-        {
-            try candidate.Free(Claim(maxLength: 5, startIndex: 1, count: 1))
-            XCTFail()
-        }
-        catch PatternError.CannotFreeStake
-        {
-            // expected
-        }
-        catch
-        {
-            XCTFail()
-        }
+        candidate.Stake(Claim(maxLength: 5, startIndex: 0, count: 2))
+        candidate.Free(Claim(maxLength: 5, startIndex: 1, count: 1))
+        XCTAssertEqual(candidate.GetAllRemaining(), Claim(maxLength: 5, startIndex: 1, count: 4))
     }
     
     func testGetNextUnused() {

@@ -123,23 +123,20 @@ class ExhaustibleLetterSet : LetterSet
     }
     
     ///
-    private func ReserveChar(ch: Character) throws
+    private func ReserveChar(ch: Character)
     {
         var count = _letterCounts[ch]
-        if (count == nil || count! == 0)
-        {
-            throw PatternError.CannotReserveLetter
-        }
+        VerifyElseCrash(count == nil || count! > 0)
         _letterCounts[ch] = --count!
     }
     
     /// Exhaust one character from our exhaustible letter set
-    override func Reserve(str: String) throws
+    override func Reserve(str: String)
     {
         let lower = str.lowercaseString.characters
         for ch in lower
         {
-            try ReserveChar(ch)
+            ReserveChar(ch)
         }
     }
     

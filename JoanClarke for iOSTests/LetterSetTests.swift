@@ -59,33 +59,13 @@ class ExhaustibleLetterSetTests: XCTestCase {
         let set = ExhaustibleLetterSet(str: "World")
         let ch : Character = "r"
         XCTAssert(set.IsInSet(ch))
-        do
-        {
-            try set.Reserve("r")
-            XCTAssert(!set.IsInSet(ch))
-            set.Return("r")
-            XCTAssert(set.IsInSet(ch))
-        }
-        catch
-        {
-            XCTFail("Shouldn't fail to reserve")
-        }
-    }
-    
-    func testCantReserve() {
-        let set = ExhaustibleLetterSet(str: "World")
-        let ch : Character = "z"
+
+        set.Reserve("r")
         XCTAssert(!set.IsInSet(ch))
-        do
-        {
-            try set.Reserve("z")
-            XCTFail("Reserve should have thrown")
-        }
-        catch
-        {
-            XCTAssert(set.Letters?.characters.count == 5)
-        }
+        set.Return("r")
+        XCTAssert(set.IsInSet(ch))
     }
+
     
     func testAreAllInSet() {
         let set = ExhaustibleLetterSet(str: "HELLO")

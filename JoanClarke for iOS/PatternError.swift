@@ -11,16 +11,6 @@ import Foundation
 
 enum PatternError: ErrorType
 {
-    /// Occurs when trying to do a claim operation on claims of different lengths
-    case ClaimsOfDifferentLengths
-    /// Occurs when trying to separate claims that have no overlap
-    case ClaimMustBeSublaim
-    /// Attempted to stake a claim that conflicts with previous stakes      
-    case StakeOverlapsExistingClaim
-    /// Attempted to free a claim that isn't currently staked
-    case CannotFreeStake
-    /// Attempted to reserve a letter that was not in the LetterSet
-    case CannotReserveLetter
     /// Rule must specify token character
     case RuleMustSpecifyTokenCharacter
     /// Unfinished rule

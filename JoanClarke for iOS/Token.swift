@@ -31,7 +31,7 @@ class Token
     }
     
     /// Unclaim any staked claims of this token
-    func Pop(candidate: Candidate) throws
+    func Pop(candidate: Candidate)
     {
         if (_previousClaim == nil)
         {
@@ -41,7 +41,7 @@ class Token
         if (_previousClaim! != Claim.Empty)
         {
             
-            try candidate.Free(_previousClaim!)
+            candidate.Free(_previousClaim!)
         }
         
         _previousClaim = nil

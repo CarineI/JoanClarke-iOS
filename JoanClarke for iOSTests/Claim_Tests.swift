@@ -114,78 +114,24 @@ class Claim_Tests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
-    func testCombineClaimsThrows() {
-        
-        let claim1 = Claim(maxLength: 3)
-        let claim2 = Claim(maxLength: 5)
-        
-        do {
-            try Claim.CombineClaims(claim1, b: claim2)
-            XCTFail()
-        }
-        catch PatternError.ClaimsOfDifferentLengths{
-            
-        }
-        catch{
-            XCTFail()
-        }
-    }
+
     
     func testCombineClaims() {
         
         let claim1 = Claim(maxLength: 5, startIndex: 1, count: 1)
         let claim2 = Claim(maxLength: 5, startIndex: 2, count: 1)
         
-        do {
-           let combined = try Claim.CombineClaims(claim1, b: claim2)
-            XCTAssertEqual(combined, Claim(maxLength: 5, startIndex: 1, count: 2))
-        }
-        catch{
-            XCTFail()
-        }
+        let combined =  Claim.CombineClaims(claim1, b: claim2)
+        XCTAssertEqual(combined, Claim(maxLength: 5, startIndex: 1, count: 2))
     }
     
-    func testSeparateClaimsThrows() {
-        
-        let claim1 = Claim(maxLength: 3)
-        let claim2 = Claim(maxLength: 5, startIndex: 1, count: 1)
-        let claim3 = Claim(maxLength: 5, startIndex: 2, count: 1)
-        
-        do {
-            try Claim.SeparateClaims(claim1, b: claim2)
-            XCTFail()
-        }
-        catch PatternError.ClaimsOfDifferentLengths{
-            // expected
-        }
-        catch{
-            XCTFail()
-        }
 
-        do {
-            try Claim.SeparateClaims(claim3, b: claim2)
-            XCTFail()
-        }
-        catch PatternError.ClaimMustBeSublaim{
-            // expected
-        }
-        catch{
-            XCTFail()
-        }
-}
-    
     func testSeparateClaims() {
         
         let claim1 = Claim(maxLength: 5, startIndex: 1, count: 3)
         let claim2 = Claim(maxLength: 5, startIndex: 3, count: 1)
         
-        do {
-            let separated = try Claim.SeparateClaims(claim1, b: claim2)
-            XCTAssertEqual(separated, Claim(maxLength: 5, startIndex: 1, count: 2))
-        }
-        catch{
-            XCTFail()
-        }
+        let separated = Claim.SeparateClaims(claim1, b: claim2)
+        XCTAssertEqual(separated, Claim(maxLength: 5, startIndex: 1, count: 2))
     }
 }

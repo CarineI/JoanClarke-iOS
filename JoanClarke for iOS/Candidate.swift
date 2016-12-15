@@ -38,23 +38,17 @@ class Candidate
     }
     
     /// Mark part of a candidate as used
-    func Stake(stake: Claim) throws
+    func Stake(stake: Claim)
     {
-        if (_alreadyClaimed.DoClaimsOverlap(stake))
-        {
-            throw PatternError.StakeOverlapsExistingClaim
-        }
-        _alreadyClaimed = try Claim.CombineClaims(_alreadyClaimed, b: stake)
+        VerifyElseCrash(!_alreadyClaimed.DoClaimsOverlap(stake))
+        _alreadyClaimed = Claim.CombineClaims(_alreadyClaimed, b: stake)
     }
 
     /// Release part of candidate that was staked
-    func Free(stake: Claim) throws
+    func Free(stake: Claim)
     {
-        if (!stake.IsSubclaimOf(_alreadyClaimed))
-        {
-            throw PatternError.CannotFreeStake
-        }
-        _alreadyClaimed = try Claim.SeparateClaims(_alreadyClaimed, b: stake)
+        VerifyElseCrash(stake.IsSubclaimOf(_alreadyClaimed))
+        _alreadyClaimed = Claim.SeparateClaims(_alreadyClaimed, b: stake)
     }
     
     /// Returns a claim with all unused letters(characters)

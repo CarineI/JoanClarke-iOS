@@ -26,34 +26,18 @@ class LetterTokenTests: XCTestCase {
         let candidate = Candidate(word: "APPLE")
         let claim = Claim(maxLength: 5, startIndex: 0, count: 1)
         
-        do
-        {
-            let result = try token.MatchSequential(candidate)
-            XCTAssert(result)
-            
-            XCTAssertEqual(token._previousClaim, claim)
-        }
-        catch
-        {
-             XCTFail("Token should not have thrown")
-        }
+        let result = token.MatchSequential(candidate)
+        XCTAssert(result)
+        XCTAssertEqual(token._previousClaim, claim)
     }
     
     func testMatchSequentialFails() {
         let token = LetterToken(letter: "p")
         let candidate = Candidate(word: "APPLE")
         
-        do
-        {
-            let result = try token.MatchSequential(candidate)
-            XCTAssert(!result)
-            
-            XCTAssertNil(token._previousClaim)
-        }
-        catch
-        {
-            XCTFail("Token should not have thrown")
-        }
+        let result = token.MatchSequential(candidate)
+        XCTAssert(!result)
+        XCTAssertNil(token._previousClaim)
     }
     
     func testMatchAnySuccess() {
@@ -61,34 +45,19 @@ class LetterTokenTests: XCTestCase {
         let candidate = Candidate(word: "APPLE")
         let claim = Claim(maxLength: 5, startIndex: 4, count: 1)
         
-        do
-        {
-            let result = try token.MatchAny(candidate)
-            XCTAssert(result)
-            
-            XCTAssertEqual(token._previousClaim, claim)
-        }
-        catch
-        {
-            XCTFail("Token should not have thrown")
-        }
+        let result = token.MatchAny(candidate)
+        XCTAssert(result)
+        XCTAssertEqual(token._previousClaim, claim)
     }
     
     func testMatchAnyFails() {
         let token = LetterToken(letter: "x")
         let candidate = Candidate(word: "APPLE")
         
-        do
-        {
-            let result = try token.MatchAny(candidate)
-            XCTAssert(!result)
+        let result = token.MatchAny(candidate)
+        XCTAssert(!result)
             
-            XCTAssertEqual(token._previousClaim, nil)
-        }
-        catch
-        {
-            XCTFail("Token should not have thrown")
-        }
+        XCTAssertEqual(token._previousClaim, nil)
     }
     
     func testMergeWith() {
@@ -102,6 +71,5 @@ class LetterTokenTests: XCTestCase {
         
         // Merge inside anagrams is not supported
         XCTAssertNil(tokenA.MergeWith(tokenB, inAnagram: true))
-    
     }
 }
