@@ -71,7 +71,7 @@ class LetterSet
         return true
     }
     
-    func Reserve(str : String) throws
+    func Reserve(str : String)
     {
         // Base class does nothing
     }

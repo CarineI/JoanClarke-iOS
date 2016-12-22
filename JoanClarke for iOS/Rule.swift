@@ -232,11 +232,11 @@ class Rule
     }
     
     /// If this rule has a exhaustible letter set, reserve these letters. If no letter set, this is a no-op.
-    func Reserve(str: String) throws
+    func Reserve(str: String)
     {
         if (_letterSet != nil)
         {
-             try _letterSet!.Reserve(str)
+             _letterSet!.Reserve(str)
         }
     }
     

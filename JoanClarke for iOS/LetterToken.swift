@@ -19,7 +19,6 @@ class LetterToken : Token
         super.init()
     }
     
-    // TODO : Refact Claim.Stake to not throw and use fatal error instead
     override func MatchSequential(candidate: Candidate) -> Bool
     {
         // No second tries
