@@ -147,7 +147,11 @@ class DotToken : Token
     
     override func MergeWith(second: Token, inAnagram: Bool) -> Token?
     {
-        // TODO: DotSequenceToken
+        if (!inAnagram && second is DotToken
+            && (second as! DotToken)._token == "." && _token == ".")
+        {
+            return DotSequenceToken(length: 2)
+        }
         return nil
     }
 }
