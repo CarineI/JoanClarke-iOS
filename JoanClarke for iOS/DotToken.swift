@@ -113,7 +113,7 @@ class DotToken : Token
                 candidate.Free(_previousClaim!)
             }
             
-            DotToken.ReserveFromRule(_token, str: _previousClaim!.ClaimedText(candidate.Word))
+            DotToken.ReserveFromRule(_token, str: match.ClaimedText(candidate.Word))
             candidate.Stake(match)
             _previousClaim = match
             return true
