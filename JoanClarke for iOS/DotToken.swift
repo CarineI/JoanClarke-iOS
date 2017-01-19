@@ -11,9 +11,9 @@ import Foundation
 
 class DotToken : Token
 {
-    private var _token : String
+    fileprivate var _token : String
     var TokenChar : Character { get {return _token.characters.first!}}
-    private static var _ruleSets = [String : Rule]()
+    fileprivate static var _ruleSets = [String : Rule]()
     
     init(tokenChar: Character)
     {
@@ -21,7 +21,7 @@ class DotToken : Token
         super.init()
     }
     
-    static func ApplyRule(token: String, rule : Rule)
+    static func ApplyRule(_ token: String, rule : Rule)
     {
         let r = _ruleSets[token]
         if (r == nil)
@@ -39,7 +39,7 @@ class DotToken : Token
         _ruleSets = [String : Rule]()
     }
     
-    static func ObeysRules(token: String, str: String) -> Bool
+    static func ObeysRules(_ token: String, str: String) -> Bool
     {
         let r = _ruleSets[token]
         if( r == nil)
@@ -52,7 +52,7 @@ class DotToken : Token
         }
     }
     
-    static func ObeysRules(token: String, ch: Character) -> Bool
+    static func ObeysRules(_ token: String, ch: Character) -> Bool
     {
         let r = _ruleSets[token]
         if( r == nil)
@@ -65,7 +65,7 @@ class DotToken : Token
         }
     }
     
-    static func ReserveFromRule(token: String, str: String)
+    static func ReserveFromRule(_ token: String, str: String)
     {
         let r = _ruleSets[token]
         if (r != nil)
@@ -74,7 +74,7 @@ class DotToken : Token
         }
     }
     
-    static func ReturnToRule(token: String, str: String)
+    static func ReturnToRule(_ token: String, str: String)
     {
         let r = _ruleSets[token]
         if (r != nil)
@@ -83,7 +83,7 @@ class DotToken : Token
         }
     }
 
-    override func MatchSequential(candidate: Candidate) -> Bool
+    override func MatchSequential(_ candidate: Candidate) -> Bool
     {
         // No second tries
         if (_previousClaim != nil)
@@ -102,7 +102,7 @@ class DotToken : Token
         return false
     }
     
-    override func MatchAny(candidate: Candidate) -> Bool
+    override func MatchAny(_ candidate: Candidate) -> Bool
     {
         let match = candidate.GetNextUnused(_previousClaim)
         if (!match.IsEmpty() && DotToken.ObeysRules(_token, str: match.ClaimedText(candidate.Word)))
@@ -121,7 +121,7 @@ class DotToken : Token
         return false
     }
     
-    override func Pop(candidate: Candidate)
+    override func Pop(_ candidate: Candidate)
     {
         if (_previousClaim != nil)
         {
@@ -129,7 +129,7 @@ class DotToken : Token
         }
     }
     
-    override func GetLengthOfMatches(inout min: Int, inout max: Int)
+    override func GetLengthOfMatches(_ min: inout Int, max: inout Int)
     {
         min = 1
         max = 1
@@ -145,7 +145,7 @@ class DotToken : Token
         return "any letter"
     }
     
-    override func MergeWith(second: Token, inAnagram: Bool) -> Token?
+    override func MergeWith(_ second: Token, inAnagram: Bool) -> Token?
     {
         if (!inAnagram && second is DotToken
             && (second as! DotToken)._token == "." && _token == ".")

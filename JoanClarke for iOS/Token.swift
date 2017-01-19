@@ -19,19 +19,19 @@ class Token
     }
     
     /// Must be overriden: match in non-anagram case
-    func MatchSequential(candidate: Candidate) throws -> Bool
+    func MatchSequential(_ candidate: Candidate) throws -> Bool
     {
         fatalError(" Must override")
     }
     
     /// Must be overriden: match in anagram case
-    func MatchAny(candidate: Candidate) throws -> Bool
+    func MatchAny(_ candidate: Candidate) throws -> Bool
     {
         fatalError(" Must override")
     }
     
     /// Unclaim any staked claims of this token
-    func Pop(candidate: Candidate)
+    func Pop(_ candidate: Candidate)
     {
         if (_previousClaim == nil)
         {
@@ -54,13 +54,13 @@ class Token
     }
     
     /// Comparer for sort ranks
-    func CompareTo(token : Token) -> Int
+    func CompareTo(_ token : Token) -> Int
     {
         return SortRank() - token.SortRank()
     }
     
     /// Friendly text for this token's claim
-    func GetInterestingExpansion(candidateWord : String) -> String
+    func GetInterestingExpansion(_ candidateWord : String) -> String
     {
         return ""
     }
@@ -75,7 +75,7 @@ class Token
         Used to constrain dictionary search to words of
         appropriate length
     **/
-    func GetLengthOfMatches(inout min : Int, inout max : Int)
+    func GetLengthOfMatches(_ min : inout Int, max : inout Int)
     {
         min = 0
         max = 0
@@ -88,7 +88,7 @@ class Token
     }
     
     /// Combine sequential tokens of the same kind into a superset token
-    func MergeWith(second: Token, inAnagram : Bool) -> Token?
+    func MergeWith(_ second: Token, inAnagram : Bool) -> Token?
     {
         return nil
     }

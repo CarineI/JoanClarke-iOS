@@ -7,6 +7,30 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class Rule
 {
@@ -21,13 +45,13 @@ class Rule
         // apply each rule
     }
     
-    private var _tokenChars : String
-    private var _unique: Bool?
-    private var _minLength: Int?
-    private var _maxLength: Int?
-    private var _cryptoRedefine: Bool
-    private var _dotRedefine: Bool
-    private var _letterSet: LetterSet?
+    fileprivate var _tokenChars : String
+    fileprivate var _unique: Bool?
+    fileprivate var _minLength: Int?
+    fileprivate var _maxLength: Int?
+    fileprivate var _cryptoRedefine: Bool
+    fileprivate var _dotRedefine: Bool
+    fileprivate var _letterSet: LetterSet?
     
     var Letters : LetterSet? { get { return _letterSet } }
     var MinLength : Int? { get { return _minLength } }
@@ -61,12 +85,13 @@ class Rule
         _dotRedefine = r._dotRedefine || s._dotRedefine
     }
     
-    private func ParseRule(raw: String) throws
+    fileprivate func ParseRule(_ raw: String) throws
     {
-        let iEquals = raw.characters.indexOf("=")!
+        let iEquals = raw.characters.index(of: "=")!
+        let iAfter = raw.index(after: iEquals)
         
-        var left = raw.substringToIndex(iEquals)
-        var right = raw.substringFromIndex(iEquals.advancedBy(1))
+        var left = raw.substring(to: iEquals)
+        var right = raw.substring(from: iAfter)
         var op = "="
         
         let lastLeft = left.characters.last
@@ -74,27 +99,30 @@ class Rule
         
         if ( lastLeft != nil  &&  (lastLeft! == "<"  || lastLeft! == ">" || lastLeft! == "!"))
         {
-            op = raw.substringWithRange(iEquals.advancedBy(-1)...iEquals)
-            left = left.substringToIndex(iEquals.advancedBy(-1))
+            let iBefore = raw.index(before: iEquals)
+            op = raw.substring(with: iBefore..<iAfter)
+            left = left.substring(to: iBefore)
         }
         else if ( firstRight != nil  &&  (firstRight! == "<"  || firstRight! == ">"))
         {
-            op = raw.substringWithRange(iEquals.advancedBy(1)...iEquals.advancedBy(1))
-            right = raw.substringFromIndex(iEquals.advancedBy(2))
+            let iAfter2 = raw.index(after: iAfter)
+            op = raw.substring(with: iAfter..<iAfter2)
+            right = raw.substring(from: iAfter2)
         }
         else if ( firstRight != nil  &&  firstRight! == "=")
         {
+            let iAfter2 = raw.index(after: iAfter)
             op = "=="
-            right = raw.substringFromIndex(iEquals.advancedBy(2))
+            right = raw.substring(from: iAfter2)
         }
         
         if (left.characters.count < 1)
         {
-            throw PatternError.RuleMustSpecifyTokenCharacter
+            throw PatternError.ruleMustSpecifyTokenCharacter
         }
         if (right.characters.count == 0)
         {
-            throw PatternError.UnfinishedRule
+            throw PatternError.unfinishedRule
         }
         
         _tokenChars = Rule.Expand(left)
@@ -105,7 +133,7 @@ class Rule
             let length = Int(right)
             if (length == nil)
             {
-                throw PatternError.LengthRulesRequireAnIntegerLength
+                throw PatternError.lengthRulesRequireAnIntegerLength
             }
             
             switch op
@@ -122,7 +150,7 @@ class Rule
                 case ">=":
                     _minLength = length
                 default:
-                    throw PatternError.LengthRulesRequireAnIntegerLength
+                    throw PatternError.lengthRulesRequireAnIntegerLength
                 
             }
         }
@@ -131,16 +159,16 @@ class Rule
             // Parse letter set rules
             if (right.characters.last! != "}")
             {
-                throw PatternError.MismatchedBraces
+                throw PatternError.mismatchedBraces
             }
             
-            let start = right.startIndex.advancedBy(1)
-            let end = right.endIndex.advancedBy(-1)
-            var letters = right.substringWithRange(start..<end)
+            let start = right.characters.index(right.startIndex, offsetBy: 1)
+            let end = right.characters.index(right.endIndex, offsetBy: -1)
+            var letters = right.substring(with: start..<end)
             let exclusive = (letters.characters.count > 0 && letters.characters.first! == "!")
             if (exclusive)
             {
-                letters = letters.substringFromIndex(letters.startIndex.advancedBy(1))
+                letters = letters.substring(from: letters.characters.index(letters.startIndex, offsetBy: 1))
             }
             _letterSet = LetterSet(str: letters, exclusive: exclusive)
         }
@@ -149,12 +177,12 @@ class Rule
             // Parse letter set rules
             if (right.characters.last! != "]")
             {
-                throw PatternError.MismatchedBraces
+                throw PatternError.mismatchedBraces
             }
             
-            let start = right.startIndex.advancedBy(1)
-            let end = right.endIndex.advancedBy(-1)
-            let letters = right.substringWithRange(start...end)
+            let start = right.index(after: right.startIndex)
+            let end = right.index(before: right.endIndex)
+            let letters = right.substring(with: start..<end)
             _letterSet = ExhaustibleLetterSet(str: letters)
         }
         else if (right == "^" || right == "!~" || (right == "~" && op == "!="))
@@ -177,35 +205,35 @@ class Rule
         }
         else
         {
-            throw PatternError.UnknownRule
+            throw PatternError.unknownRule
         }
     }
     
-    static func Expand(tokens : String) -> String
+    static func Expand(_ tokens : String) -> String
     {
         // TODO: write code to expand "a-c" to "abc", etc.
-        if (tokens.characters.indexOf(",") != nil)
+        if (tokens.characters.index(of: ",") != nil)
         {
-            let toks = tokens.characters.split(",")
+            let toks = tokens.characters.split(separator: ",")
             var expanded = ""
             for tok in toks
             {
-                expanded.appendContentsOf(Expand(String(tok)))
+                expanded.append(Expand(String(tok)))
             }
             return expanded
         }
         
         // the windows version has an @ number expander
         
-        let one = tokens.characters.startIndex.advancedBy(1)
-        if (tokens.characters.count == 3 && tokens.substringWithRange(one...one) == "-")
+        let one = tokens.index(after: tokens.startIndex)
+        if (tokens.characters.count == 3 && tokens[one] == "-")
         {
             var expanded = ""
             let firstInt = tokens.utf16.first!
             let lastInt = tokens.utf16.last!
             for ch in firstInt...lastInt
             {
-                expanded.append(UnicodeScalar(ch))
+                expanded.append(String(describing: UnicodeScalar(ch)))
             }
             return Expand(expanded)
         }
@@ -214,25 +242,25 @@ class Rule
     }
     
     /// Does this rule override uniqueness? If not, return the default passed in from the token
-    func IsUnique(defaultIfUnset: Bool = true) -> Bool
+    func IsUnique(_ defaultIfUnset: Bool = true) -> Bool
     {
         return _unique == nil ? defaultIfUnset : _unique!
     }
     
     /// If this rule has a letter set, does this character pass? If no letter set, all characters pass.
-    func IsInSet(ch: Character) -> Bool
+    func IsInSet(_ ch: Character) -> Bool
     {
         return _letterSet == nil ? true : _letterSet!.IsInSet(ch)
     }
     
     /// If this rule has a letter set, do the characters in this string pass? If no letter set, all characters pass.
-    func AreAllInSet(str: String) -> Bool
+    func AreAllInSet(_ str: String) -> Bool
     {
         return _letterSet == nil ? true : _letterSet!.AreAllInSet(str)
     }
     
     /// If this rule has a exhaustible letter set, reserve these letters. If no letter set, this is a no-op.
-    func Reserve(str: String)
+    func Reserve(_ str: String)
     {
         if (_letterSet != nil)
         {
@@ -241,7 +269,7 @@ class Rule
     }
     
     /// If this rule has a exhaustible letter set, return these letters. If no letter set, this is a no-op.
-    func Return(str: String)
+    func Return(_ str: String)
     {
         if (_letterSet != nil)
         {
@@ -250,7 +278,7 @@ class Rule
     }
     
     /// If this rule specifies length constraints, does this length pass? If no constraints are set, all lengths pass
-    func IsValidLength(length: Int) -> Bool
+    func IsValidLength(_ length: Int) -> Bool
     {
         if (_minLength != nil && _minLength! > length)
         {
@@ -264,14 +292,14 @@ class Rule
     }
     
     /// What are the length constraints. If none are set, the defaults are 0...1000
-    func GetMinMaxLength(inout min: Int, inout max: Int)
+    func GetMinMaxLength(_ min: inout Int, max: inout Int)
     {
         min = _minLength == nil ? 0 : _minLength!
         max = _maxLength == nil ? 1000 : _maxLength!
     }
     
     /// Checks if this claim is compliant with the rules
-    func ObeysRules(claim: Claim, candidate : Candidate) -> Bool
+    func ObeysRules(_ claim: Claim, candidate : Candidate) -> Bool
     {
         // If we have a minLength rule and we have violated it
         if (_minLength != nil && claim.Length() < _minLength)
@@ -294,7 +322,7 @@ class Rule
     }
     
     /// Merge two ints by taking the non-nil one, or the min/max if they're both non-nil
-    private func Merge(a: Int?, b: Int?, minimum: Bool) -> Int?
+    fileprivate func Merge(_ a: Int?, b: Int?, minimum: Bool) -> Int?
     {
         if (a == nil)
         {
@@ -308,7 +336,7 @@ class Rule
     }
     
     /// Merge two bools by taking the non-nil one, or oring/anding them if they're both non-nil
-    private func Merge(a: Bool?, b: Bool?, or: Bool = true) -> Bool?
+    fileprivate func Merge(_ a: Bool?, b: Bool?, or: Bool = true) -> Bool?
     {
         if (a == nil)
         {
@@ -322,7 +350,7 @@ class Rule
     }
     
     /// Merge two lettersets by taking the non-nil one, or b, if both are non-nil
-    private func Merge(a: LetterSet?, b: LetterSet?) -> LetterSet?
+    fileprivate func Merge(_ a: LetterSet?, b: LetterSet?) -> LetterSet?
     {
         if (a == nil)
         {

@@ -10,17 +10,17 @@ import Foundation
 
 class LetterSequenceToken : Token
 {
-    private var _letters : String
+    fileprivate var _letters : String
     var Letters : String { get {return _letters}}
     
     init(letters: String)
     {
-        _letters = letters.uppercaseString
+        _letters = letters.uppercased()
         super.init()
     }
     
     // TODO : Refact Claim.Stake to not throw and use fatal error instead
-    override func MatchSequential(candidate: Candidate) throws -> Bool
+    override func MatchSequential(_ candidate: Candidate) throws -> Bool
     {
         // No second tries
         if (_previousClaim != nil)
@@ -38,12 +38,12 @@ class LetterSequenceToken : Token
         return false
     }
     
-    override func MatchAny(candidate: Candidate) throws -> Bool
+    override func MatchAny(_ candidate: Candidate) throws -> Bool
     {
-        throw PatternError.InvalidTokenInAnagram
+        throw PatternError.invalidTokenInAnagram
     }
     
-    override func GetLengthOfMatches(inout min: Int, inout max: Int)
+    override func GetLengthOfMatches(_ min: inout Int, max: inout Int)
     {
         min = _letters.characters.count
         max = _letters.characters.count
@@ -54,13 +54,13 @@ class LetterSequenceToken : Token
         return NSString(format: "the letters %s in sequence", _letters) as String
     }
     
-    override func MergeWith(second: Token, inAnagram: Bool) -> Token?
+    override func MergeWith(_ second: Token, inAnagram: Bool) -> Token?
     {
         
         if (!inAnagram && second is LetterToken)
         {
             var str = _letters
-            str.appendContentsOf(String((second as! LetterToken).Letter))
+            str.append(String((second as! LetterToken).Letter))
             return LetterSequenceToken(letters: str)
         }
         return nil

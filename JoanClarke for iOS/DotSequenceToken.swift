@@ -10,7 +10,7 @@ import Foundation
 
 class DotSequenceToken : DotToken
 {
-    private var _length : Int
+    fileprivate var _length : Int
     
     init(length : Int)
     {
@@ -18,7 +18,7 @@ class DotSequenceToken : DotToken
         super.init(tokenChar: ".")
     }
     
-    override func MatchSequential(candidate: Candidate) -> Bool
+    override func MatchSequential(_ candidate: Candidate) -> Bool
     {
         // No second tries
         if (_previousClaim != nil)
@@ -36,12 +36,12 @@ class DotSequenceToken : DotToken
         return false
     }
     
-    override func MatchAny(candidate: Candidate) -> Bool
+    override func MatchAny(_ candidate: Candidate) -> Bool
     {
         fatalError("We never merge dot tokens in anagrams")
     }
     
-    override func GetLengthOfMatches(inout min: Int, inout max: Int)
+    override func GetLengthOfMatches(_ min: inout Int, max: inout Int)
     {
         min = _length
         max = _length
@@ -52,7 +52,7 @@ class DotSequenceToken : DotToken
         return NSString(format: "any %d letters", _length) as String
     }
 
-    override func MergeWith(second: Token, inAnagram: Bool) -> Token?
+    override func MergeWith(_ second: Token, inAnagram: Bool) -> Token?
     {
         
         if (!inAnagram && second is DotToken)

@@ -10,13 +10,13 @@ import Foundation
 
 class Candidate
 {
-    private var _word : String
+    fileprivate var _word : String
     var Word : String { get { return _word}}
     
-    private var _previousLink : Candidate?
+    fileprivate var _previousLink : Candidate?
     var PreviousLink : Candidate? { get { return _previousLink } }
     
-    private var _alreadyClaimed : Claim
+    fileprivate var _alreadyClaimed : Claim
     
     init(word : String, previousLink : Candidate? = nil)
     {
@@ -31,21 +31,21 @@ class Candidate
         var c : Candidate? = _previousLink
         while ( c != nil)
         {
-            index++
+            index += 1
             c = c!._previousLink
         }
         return index
     }
     
     /// Mark part of a candidate as used
-    func Stake(stake: Claim)
+    func Stake(_ stake: Claim)
     {
         VerifyElseCrash(!_alreadyClaimed.DoClaimsOverlap(stake))
         _alreadyClaimed = Claim.CombineClaims(_alreadyClaimed, b: stake)
     }
 
     /// Release part of candidate that was staked
-    func Free(stake: Claim)
+    func Free(_ stake: Claim)
     {
         VerifyElseCrash(stake.IsSubclaimOf(_alreadyClaimed))
         _alreadyClaimed = Claim.SeparateClaims(_alreadyClaimed, b: stake)
@@ -58,33 +58,33 @@ class Candidate
     }
     
     /// Returns the next letter(character) that is not already staked
-    func GetNextUnused(previous: Claim? = nil) -> Claim
+    func GetNextUnused(_ previous: Claim? = nil) -> Claim
     {
         return _alreadyClaimed.NextUnclaimedCharacter(previous)
     }
     
     /// Returns the next set of unused letters(characters) as requested
-    func GetNextUnused(length: Int) -> Claim
+    func GetNextUnused(_ length: Int) -> Claim
     {
         return _alreadyClaimed.NextUnclaimedCharacter(length)
     }
     
     /// Returns a matching unstaked letter within this candidate, if any exist
-    func Find(ch: Character) -> Claim
+    func Find(_ ch: Character) -> Claim
     {
         return Find(nil, ch: ch)
     }
     
     /// Returns a matching unstaked letter within this candidate if any exist
     /// starting after the given claim
-    func Find(previous : Claim?, ch: Character) -> Claim
+    func Find(_ previous : Claim?, ch: Character) -> Claim
     {
         var single = _alreadyClaimed.NextUnclaimedCharacter(previous)
         while(!single.IsEmpty())
         {
             let claimedWordText = single.ClaimedText(_word)
             let chInString = String(ch)
-            if (claimedWordText.caseInsensitiveCompare(chInString) == NSComparisonResult.OrderedSame)
+            if (claimedWordText.caseInsensitiveCompare(chInString) == ComparisonResult.orderedSame)
             {
               return single
             }

@@ -8,20 +8,19 @@
 
 import Foundation
 
-func VerifyElseCrash(b: Bool) -> Bool
+func VerifyElseCrash(_ b: Bool)
 {
     if (!b)
     {
         var n : Bool?
         n = nil
-        return n!
+        _ = n!
     }
-    return true
 }
 
 class Claim : Equatable
 {
-    static private(set) var Empty : Claim = Claim(maxLength: 0)
+    static fileprivate(set) var Empty : Claim = Claim(maxLength: 0)
     
     var _maxBits : Int = 0
     var _bits : UInt64 = 0
@@ -45,22 +44,24 @@ class Claim : Equatable
         }
     }
     
-    func ClaimedText(word: String) -> String
+    func ClaimedText(_ word: String) -> String
     {
         var builder = ""
         for i in 0..<_maxBits
         {
             if ((_bits & (Claim.One << UInt64(i))) != 0)
             {
-                let offset = word.startIndex.advancedBy(i)
-                builder += word.substringWithRange(offset...offset)
+                let offset = word.characters.index(word.startIndex, offsetBy: i)
+                let end = word.characters.index(word.startIndex, offsetBy: i + 1)
+                let range = offset..<end
+                builder += word.substring(with: range)
             }
         }
         return builder
     }
     
     /// Finds the next x unclaimed characters
-    func NextUnclaimedCharacter(previousSingleCharacter: Claim?) -> Claim
+    func NextUnclaimedCharacter(_ previousSingleCharacter: Claim?) -> Claim
     {
         var firstBit: Int = 0
         if (previousSingleCharacter != nil)
@@ -81,7 +82,7 @@ class Claim : Equatable
     }
     
     /// Finds the next x unclaimed characters
-    func NextUnclaimedCharacter(countOfChars: Int) -> Claim
+    func NextUnclaimedCharacter(_ countOfChars: Int) -> Claim
     {
         let nBits : UInt64 = (Claim.One << UInt64(countOfChars)) - 1
         for bit in 0...(_maxBits - countOfChars)
@@ -110,7 +111,7 @@ class Claim : Equatable
         while bits != 0
         {
             bits &= (bits - 1)
-            len++
+            len += 1
         }
         return len
     }
@@ -125,14 +126,14 @@ class Claim : Equatable
     }
     
     /// Returns the index of the first letter not used by this claim
-    func NextUnclaimedIndex (var after: Int = -1) -> Int
+    func NextUnclaimedIndex (_ after: Int = -1) -> Int
     {
-        while (++after < _maxBits)
+        for i  in (after+1)..<_maxBits
         {
             // 0x1 is the first letter of the claim
-            if (!BitAt(after))
+            if (!BitAt(i))
             {
-                return after
+                return i
             }
         }
         return -1
@@ -158,20 +159,20 @@ class Claim : Equatable
     }
     
     /// Checks if this claim and the given claim share any claimed bits
-    func DoClaimsOverlap (claim : Claim) -> Bool
+    func DoClaimsOverlap (_ claim : Claim) -> Bool
     {
         return (_bits & claim._bits) != 0
     }
     
     /// Checks that all bits set in our claim are also set in the given parent claim
-    func IsSubclaimOf (parent : Claim) -> Bool
+    func IsSubclaimOf (_ parent : Claim) -> Bool
     {
         return (_bits & ~parent._bits) == 0
     }
     
     
     /// Combine two claims
-    static func CombineClaims(a: Claim, b: Claim) -> Claim
+    static func CombineClaims(_ a: Claim, b: Claim) -> Claim
     {
         VerifyElseCrash(a._maxBits == b._maxBits)
         
@@ -180,7 +181,7 @@ class Claim : Equatable
         return combined;
     }
     
-    static func SeparateClaims(a: Claim, b: Claim) -> Claim
+    static func SeparateClaims(_ a: Claim, b: Claim) -> Claim
     {
         VerifyElseCrash(a._maxBits == b._maxBits)
         VerifyElseCrash(a.IsSubclaimOf(b) || b.IsSubclaimOf(a))
@@ -191,25 +192,25 @@ class Claim : Equatable
     }
     
     /// returns the bit field for a consecutive range of characters
-    private func AllBitsAt(nBits: UInt64, index: Int) -> UInt64
+    fileprivate func AllBitsAt(_ nBits: UInt64, index: Int) -> UInt64
     {
         return (_bits >> UInt64(index)) & nBits
     }
     
     /// returns whether a bit at a given index is used
-    private func BitAt(index: Int) -> Bool
+    fileprivate func BitAt(_ index: Int) -> Bool
     {
         return (_bits & (Claim.One << UInt64(index))) != 0
     }
     
     /// turn all bits on to mark all used
-    private func AllBitsOn() -> UInt64
+    fileprivate func AllBitsOn() -> UInt64
     {
         return UINT64_MAX >> UInt64(64 - _maxBits)
     }
     
     /// set bit at a given index
-    private func SetBit(index : Int, on : Bool)
+    fileprivate func SetBit(_ index : Int, on : Bool)
     {
         if (on)
         {
@@ -222,7 +223,7 @@ class Claim : Equatable
     }
     
     /// Return the index of the first claimed bit (optionally starting at N)
-    private func FirstSetBit(after : Int = -1) -> Int
+    fileprivate func FirstSetBit(_ after : Int = -1) -> Int
     {
         for i in (after + 1)..<_maxBits
         {
@@ -235,9 +236,9 @@ class Claim : Equatable
     }
     
     /// Return the index of the last claimed bit
-    private func LastSetBit() -> Int
+    fileprivate func LastSetBit() -> Int
     {
-        for i in (_maxBits - 1).stride(through: 0, by: -1)
+        for i in stride(from: (_maxBits - 1), through: 0, by: -1)
         {
             if (BitAt(i))
             {
@@ -248,7 +249,7 @@ class Claim : Equatable
     }
     
     /// Return the index of the first unclaimed bit (optionally starting at N)
-    private func FirstUnsetBit(after : Int = -1) -> Int
+    fileprivate func FirstUnsetBit(_ after : Int = -1) -> Int
     {
         for i in (after + 1)..<_maxBits
         {

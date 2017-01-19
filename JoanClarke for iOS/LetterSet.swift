@@ -10,7 +10,7 @@ import Foundation
 
 class LetterSet
 {
-    private var _letterCounts = [Character: Int]()
+    fileprivate var _letterCounts = [Character: Int]()
     var Letters : String?
         {
             get
@@ -18,17 +18,20 @@ class LetterSet
                 var str = ""
                 for ch in _letterCounts.keys
                 {
-                    var count = _letterCounts[ch]
-                    while (count != nil && count!-- > 0)
+                    let count = _letterCounts[ch]
+                    if (count != nil)
                     {
-                        str.append(ch)
+                        for _ in 0..<count!
+                        {
+                            str.append(ch)
+                        }
                     }
                 }
                 return str
             }
         }
     
-    private var _exclusive : Bool
+    fileprivate var _exclusive : Bool
     var Exclusive : Bool { get { return _exclusive }}
     
     init(str: String?, exclusive: Bool)
@@ -36,7 +39,7 @@ class LetterSet
         _exclusive = exclusive
         if (str != nil)
         {
-            let lower = str!.lowercaseString.characters
+            let lower = str!.lowercased().characters
             for ch in lower
             {
                 var count = _letterCounts[ch]
@@ -44,13 +47,14 @@ class LetterSet
                 {
                     count = 0;
                 }
-                _letterCounts[ch] = ++count!
+                count! += 1
+                _letterCounts[ch] = count!
             }
         }
     }
     
     /// Is a letter in the letter set?
-    func IsInSet(ch: Character) -> Bool
+    func IsInSet(_ ch: Character) -> Bool
     {
         // TODO: convert ch to lowercase
         let count = _letterCounts[ch]
@@ -58,9 +62,9 @@ class LetterSet
     }
     
     /// Are all the letters in the string in the letter set
-    func AreAllInSet(str: String) -> Bool
+    func AreAllInSet(_ str: String) -> Bool
     {
-        let lower = str.lowercaseString.characters
+        let lower = str.lowercased().characters
         for ch in lower
         {
             if (!IsInSet(ch))
@@ -71,12 +75,12 @@ class LetterSet
         return true
     }
     
-    func Reserve(str : String)
+    func Reserve(_ str : String)
     {
         // Base class does nothing
     }
     
-    func Return(str: String)
+    func Return(_ str: String)
     {
         // Base class does nothing
     }
@@ -89,17 +93,17 @@ class ExhaustibleLetterSet : LetterSet
     }
     
     /// Are there N (or more) instances of a character in this letter set
-    private func IsCountInSet(ch: Character, count: Int) -> Bool
+    fileprivate func IsCountInSet(_ ch: Character, count: Int) -> Bool
     {
         let countInSet = _letterCounts[ch]
         return countInSet != nil && countInSet! >= count
     }
     
     /// Are all the letters from the string in the letter set (enough times)
-    override func AreAllInSet(str: String) -> Bool
+    override func AreAllInSet(_ str: String) -> Bool
     {
         var letters = [Character: Int]()
-        let lower = str.lowercaseString.characters
+        let lower = str.lowercased().characters
         for ch in lower
         {
             // If we've counted this letter before, get the previous count
@@ -111,7 +115,8 @@ class ExhaustibleLetterSet : LetterSet
             }
             
             // Verify that there are enough instances of this letter in the set
-            if (!IsCountInSet(ch, count: ++count!))
+            count! += 1
+            if (!IsCountInSet(ch, count: count!))
             {
                 return false;
             }
@@ -123,17 +128,18 @@ class ExhaustibleLetterSet : LetterSet
     }
     
     ///
-    private func ReserveChar(ch: Character)
+    fileprivate func ReserveChar(_ ch: Character)
     {
         var count = _letterCounts[ch]
         VerifyElseCrash(count == nil || count! > 0)
-        _letterCounts[ch] = --count!
+        count! -= 1
+        _letterCounts[ch] = count!
     }
     
     /// Exhaust one character from our exhaustible letter set
-    override func Reserve(str: String)
+    override func Reserve(_ str: String)
     {
-        let lower = str.lowercaseString.characters
+        let lower = str.lowercased().characters
         for ch in lower
         {
             ReserveChar(ch)
@@ -141,9 +147,9 @@ class ExhaustibleLetterSet : LetterSet
     }
     
     /// Un-exhaust characters back into our exhaustible letter set
-    override func Return(str: String)
+    override func Return(_ str: String)
     {
-        let lower = str.lowercaseString.characters
+        let lower = str.lowercased().characters
         for ch in lower
         {
             // If we've counted this letter before, get the previous count
@@ -154,7 +160,8 @@ class ExhaustibleLetterSet : LetterSet
                 count = 0
             }
             
-            _letterCounts[ch] = ++count!
+            count! += 1
+            _letterCounts[ch] = count!
         }
 
     }

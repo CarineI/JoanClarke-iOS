@@ -10,16 +10,16 @@ import Foundation
 
 class LetterToken : Token
 {
-    private var _letter : String
+    fileprivate var _letter : String
     var Letter : Character { get {return _letter.characters.first!}}
     
     init(letter: Character)
     {
-        _letter = String(letter).uppercaseString
+        _letter = String(letter).uppercased()
         super.init()
     }
     
-    override func MatchSequential(candidate: Candidate) -> Bool
+    override func MatchSequential(_ candidate: Candidate) -> Bool
     {
         // No second tries
         if (_previousClaim != nil)
@@ -37,7 +37,7 @@ class LetterToken : Token
         return false
     }
     
-    override func MatchAny(candidate: Candidate) -> Bool
+    override func MatchAny(_ candidate: Candidate) -> Bool
     {
         let match = candidate.Find(_previousClaim, ch: Letter)
         if (!match.IsEmpty())
@@ -54,7 +54,7 @@ class LetterToken : Token
         return false
     }
     
-    override func GetLengthOfMatches(inout min: Int, inout max: Int)
+    override func GetLengthOfMatches(_ min: inout Int, max: inout Int)
     {
         min = 1
         max = 1
@@ -65,12 +65,12 @@ class LetterToken : Token
         return NSString(format: "the letter %s", _letter) as String
     }
     
-    override func MergeWith(second: Token, inAnagram: Bool) -> Token?
+    override func MergeWith(_ second: Token, inAnagram: Bool) -> Token?
     {
        if (!inAnagram && second is LetterToken)
        {
             var str = _letter
-            str.appendContentsOf((second as! LetterToken)._letter)
+            str.append((second as! LetterToken)._letter)
             return LetterSequenceToken(letters: str)
        }
         

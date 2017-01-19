@@ -21,23 +21,23 @@ class WordDict
     
     func LoadFromBundle()
     {
-        let bundle = NSBundle.mainBundle()
-        let path = bundle.pathForResource("StubDict", ofType: "txt")
+        let bundle = Bundle.main
+        let path = bundle.path(forResource: "StubDict", ofType: "txt")
         
         do
         {
             let txt = try String(contentsOfFile: path!)
-            let temp = txt.componentsSeparatedByString("\r\n")
-            _wordListAlpha.appendContentsOf(temp)
-            _wordListAlpha.sortInPlace()
+            let temp = txt.components(separatedBy: "\r\n")
+            _wordListAlpha.append(contentsOf: temp)
+            _wordListAlpha.sort()
             
-            _wordListLength.appendContentsOf(temp)
-            _wordListLength.sortInPlace({ s1, s2 in
+            _wordListLength.append(contentsOf: temp)
+            _wordListLength.sort(by: { s1, s2 in
                 if (s1.characters.count !=  s2.characters.count)
                 {
                     return s1.characters.count <  s2.characters.count
                 }
-               return  (s1.compare(s2) == NSComparisonResult.OrderedAscending) })
+               return  (s1.compare(s2) == ComparisonResult.orderedAscending) })
         }
         catch
         {

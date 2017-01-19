@@ -9,20 +9,20 @@
 
 import Foundation
 
-enum PatternError: ErrorType
+enum PatternError: Error
 {
     /// Rule must specify token character
-    case RuleMustSpecifyTokenCharacter
+    case ruleMustSpecifyTokenCharacter
     /// Unfinished rule
-    case UnfinishedRule
+    case unfinishedRule
     /// Length rules require an integer length
-    case LengthRulesRequireAnIntegerLength
+    case lengthRulesRequireAnIntegerLength
     /// Mismatched braces
-    case MismatchedBraces
+    case mismatchedBraces
     /// Unknown rule syntax
-    case UnknownRule
+    case unknownRule
     /// Invalid token in anagram
-    case InvalidTokenInAnagram
+    case invalidTokenInAnagram
     
     
 }
