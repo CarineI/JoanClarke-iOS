@@ -233,7 +233,8 @@ class Rule
             let lastInt = tokens.utf16.last!
             for ch in firstInt...lastInt
             {
-                expanded.append(String(describing: UnicodeScalar(ch)))
+                let temp = String(describing: UnicodeScalar(ch)!)
+                expanded.append(temp)
             }
             return Expand(expanded)
         }
