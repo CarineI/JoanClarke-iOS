@@ -14,30 +14,53 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("We have no clue what we're doing")
-        /*let r = CGRect(x: 0, y: 0, width: SearchButton.frame.minX - InputField.frame.minX - 15, height: InputField.frame.height)
-        InputField.frame = r
-        InputField.setNeedsDisplay()*/
         
-        SampleText.text = "Hello World"
+        SearchButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
+        
+        EnglishExplanation.layer.cornerRadius = SearchButton.bounds.size.width / 4
+        
+        SearchResults.layer.cornerRadius =  SearchButton.bounds.size.width / 4
+        
+    InputField.becomeFirstResponder()
+    
+     InputField.autocorrectionType = .no
+    InputField.autocapitalizationType = .none
+        
     }
 
+    @IBOutlet weak var SearchResults: UITextView!
+    @IBOutlet weak var EnglishExplanation: UITextView!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    @IBOutlet weak var SampleText: UITextView!
 
+    @IBOutlet weak var InputField: UITextField!
 
    @IBOutlet weak var SearchButton: UIButton!
     
     @IBAction func TouchInButton(_ sender: Any) {
           SearchButton.setTitleColor( UIColor.red, for: UIControlState.normal)
     }
-
-   /* @IBAction func OnEditingBegin(sender: AnyObject)
-    {
-        SearchButton.enabled = true //UIControlState.Normal
-    }*/
+    
+    @IBAction func TouchInInputField(_ sender: Any) {
+        
+        InputField.becomeFirstResponder()
+    }
+    
+    // Lose focus
+    @IBAction func EditingDidEnd(_ sender: Any) {
+        InputField.resignFirstResponder()
+}
+ 
+    // InputField changed
+    @IBAction func EditingChanged(_ sender: Any) {
+       SearchResults.text = InputField.text!
+    }
+    
+    // Return key
+    @IBAction func PrimaryAction(_ sender: Any) {
+    }
 }
 
