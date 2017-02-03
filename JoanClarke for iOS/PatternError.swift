@@ -23,6 +23,7 @@ enum PatternError: Error
     case unknownRule
     /// Invalid token in anagram
     case invalidTokenInAnagram
-    
+    /// Unrecognized token
+    case unrecognizedToken(token : String)
     
 }

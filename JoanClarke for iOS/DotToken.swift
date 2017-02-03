@@ -21,6 +21,11 @@ class DotToken : Token
         super.init()
     }
     
+    static func IsToken(ch : String) -> Bool
+    {
+        return (ch == ".") || (_ruleSets[ch] != nil)
+    }
+    
     static func ApplyRule(_ token: String, rule : Rule)
     {
         let r = _ruleSets[token]
