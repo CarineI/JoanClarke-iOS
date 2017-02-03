@@ -50,6 +50,36 @@ class PatternTests: XCTestCase {
         }
     }
     
+    func testMatchDots() {
+        let word = "APPLE"
+        do
+        {
+            let pattern = try Pattern(raw: "a..l.")
+            XCTAssert(try pattern.Match(word: word))
+        }
+        catch
+        {
+            XCTFail("Should not throw")
+        }
+    }
+    
+    func testMatchLettersReuse() {
+        let word = "APPLE"
+        let word2 = "APPLESAUCE"
+        let word3 = "APPLES"
+        do
+        {
+            let pattern = try Pattern(raw: "apples")
+            XCTAssert(!(try pattern.Match(word: word)))
+            XCTAssert(!(try pattern.Match(word: word2)))
+            XCTAssert(try pattern.Match(word: word3))
+        }
+        catch
+        {
+            XCTFail("Should not throw")
+        }
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

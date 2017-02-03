@@ -85,11 +85,14 @@ class Claim : Equatable
     func NextUnclaimedCharacter(_ countOfChars: Int) -> Claim
     {
         let nBits : UInt64 = (Claim.One << UInt64(countOfChars)) - 1
-        for bit in 0...(_maxBits - countOfChars)
+        if (countOfChars <= _maxBits)
         {
-            if (AllBitsAt(nBits, index: bit) == 0)
+            for bit in 0...(_maxBits - countOfChars)
             {
-                return Claim(maxLength: _maxBits, startIndex: bit, count: countOfChars)
+                if (AllBitsAt(nBits, index: bit) == 0)
+                {
+                    return Claim(maxLength: _maxBits, startIndex: bit, count: countOfChars)
+                }
             }
         }
         
