@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var dict : WordDict?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,6 +27,8 @@ class ViewController: UIViewController {
      InputField.autocorrectionType = .no
     InputField.autocapitalizationType = .none
         
+        dict = WordDict()
+        dict!.LoadFromBundle()
     }
 
     @IBOutlet weak var SearchResults: UITextView!
@@ -62,5 +65,22 @@ class ViewController: UIViewController {
     // Return key
     @IBAction func PrimaryAction(_ sender: Any) {
     }
+    @IBAction func SearchClicked(_ sender: Any)
+    {
+        do{
+            let pattern =  try Pattern(raw: InputField.text!)
+            let searchResults = dict!.DoSearch(pattern: pattern)
+            var text  = ""
+            for result in searchResults
+            {
+                text.append(result)
+                text.append("\n")
+            }
+            
+            SearchResults.text = text
+        }
+        catch {}
+    }
+    
 }
 

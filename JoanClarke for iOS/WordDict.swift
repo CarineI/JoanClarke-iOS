@@ -26,7 +26,7 @@ class WordDict
         
         do
         {
-            let txt = try String(contentsOfFile: path!)
+            let txt = try String(contentsOfFile: path!).uppercased()
             let temp = txt.components(separatedBy: "\r\n")
             _wordListAlpha.append(contentsOf: temp)
             _wordListAlpha.sort()
@@ -46,4 +46,34 @@ class WordDict
         
     }
     
+    func DoSearch(pattern : Pattern) -> [String]
+    {
+        var results : [String]
+        results = []
+        let first = _wordListAlpha.startIndex
+        let last = _wordListAlpha.endIndex
+        
+        do
+        {
+            for i in first..<last
+            {
+                let word = _wordListAlpha[i]
+                if (try pattern.Match(word: word))
+                {
+                    results.append(_wordListAlpha[i])
+                }
+            }
+        }
+        catch PatternError.unrecognizedToken(let token)
+        {
+            results.append(token)
+        }
+        catch
+        {
+            results.append("Error")
+        }
+
+        
+        return results
+    }
 }

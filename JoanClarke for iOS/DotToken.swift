@@ -132,6 +132,7 @@ class DotToken : Token
         {
             DotToken.ReturnToRule(_token, str: _previousClaim!.ClaimedText(candidate.Word))
         }
+        super.Pop(candidate)
     }
     
     override func GetLengthOfMatches(_ min: inout Int, max: inout Int)
