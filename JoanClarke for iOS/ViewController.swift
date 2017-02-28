@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("We have no clue what we're doing")
-        
+        CryptoOptionsControl.isHidden = true
         SearchButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
         
         EnglishExplanation.layer.cornerRadius = SearchButton.bounds.size.width / 4
@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         DotButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
         StarButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
         AnagramButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
+        CryptoButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
+        CryptoOptionsControl.layer.cornerRadius = SearchButton.bounds.size.width / 8
         
         InputField.becomeFirstResponder()
         
@@ -35,6 +37,8 @@ class ViewController: UIViewController {
         dict!.LoadFromBundle()
     }
 
+    @IBOutlet weak var CryptoOptionsControl: UISegmentedControl!
+    @IBOutlet weak var CryptoButton: UIButton!
     @IBOutlet weak var AnagramButton: UIButton!
     @IBOutlet weak var StarButton: UIButton!
     @IBOutlet weak var DotButton: UIButton!
@@ -120,6 +124,24 @@ class ViewController: UIViewController {
                 InputField.selectedTextRange = InputField.textRange(from: newPos, to: newPos)
             }
         }
+    }
+    @IBAction func OnCryptoButtonDown(_ sender: Any)
+    {
+
+    }
+    
+    @IBAction func OnCryptoOptionAction(_ sender: Any) {
+        InputField.insertText(String(CryptoOptionsControl.selectedSegmentIndex))
+    }
+    
+    @IBAction func OnCryptoOptionButtonUp(_ sender: Any)
+    {
+        InputField.insertText(String(CryptoOptionsControl.selectedSegmentIndex))
+    }
+    
+    @IBAction func OnCryptoButton(_ sender: Any)
+    {
+         CryptoOptionsControl.isHidden = !CryptoOptionsControl.isHidden
     }
 }
 

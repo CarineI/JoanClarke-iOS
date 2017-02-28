@@ -133,11 +133,57 @@
                                     <action selector="OnAnagramButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jKX-wU-cUO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOe-RE-9dz">
+                                <rect key="frame" x="133" y="86" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="2"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="0-9">
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacing="1.5" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="OnCryptoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zBh-QU-60F"/>
+                                    <action selector="OnCryptoButtonDown:" destination="BYZ-38-t0r" eventType="touchDown" id="4j5-8e-ifD"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x18-M8-eXl">
+                                <rect key="frame" x="69" y="124" width="156" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="0"/>
+                                    <segment title="1"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                    <segment title="4"/>
+                                    <segment title="5"/>
+                                    <segment title="6"/>
+                                    <segment title="7"/>
+                                    <segment title="8"/>
+                                    <segment title="9"/>
+                                </segments>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <action selector="OnCryptoOptionAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="O6V-Bo-o7h"/>
+                                    <action selector="OnCryptoOptionButtonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jzA-Lb-VqY"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.33638307452201843" green="0.33223271369934082" blue="0.53949952125549316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="AnagramButton" destination="QDE-UX-ndI" id="eqE-Gu-uMZ"/>
+                        <outlet property="CryptoButton" destination="dOe-RE-9dz" id="j3R-eV-QSb"/>
+                        <outlet property="CryptoOptionsControl" destination="x18-M8-eXl" id="DYc-ZQ-RxG"/>
                         <outlet property="DotButton" destination="WPF-Os-FB1" id="3Bw-hT-n7l"/>
                         <outlet property="EnglishExplanation" destination="gVe-gP-Ysf" id="PGV-9i-2FO"/>
                         <outlet property="InputField" destination="PXc-gp-uZg" id="THb-Hu-jxH"/>
