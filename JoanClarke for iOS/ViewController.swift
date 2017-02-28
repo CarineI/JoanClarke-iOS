@@ -22,15 +22,22 @@ class ViewController: UIViewController {
         
         SearchResults.layer.cornerRadius =  SearchButton.bounds.size.width / 4
         
-    InputField.becomeFirstResponder()
-    
-     InputField.autocorrectionType = .no
-    InputField.autocapitalizationType = .none
+        DotButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
+        StarButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
+        AnagramButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
+        
+        InputField.becomeFirstResponder()
+        
+        InputField.autocorrectionType = .no
+        InputField.autocapitalizationType = .none
         
         dict = WordDict()
         dict!.LoadFromBundle()
     }
 
+    @IBOutlet weak var AnagramButton: UIButton!
+    @IBOutlet weak var StarButton: UIButton!
+    @IBOutlet weak var DotButton: UIButton!
     @IBOutlet weak var SearchResults: UITextView!
     @IBOutlet weak var EnglishExplanation: UITextView!
     override func didReceiveMemoryWarning() {
@@ -41,7 +48,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var InputField: UITextField!
 
-   @IBOutlet weak var SearchButton: UIButton!
+    @IBOutlet weak var SearchButton: UIButton!
     
     @IBAction func TouchInButton(_ sender: Any) {
           SearchButton.setTitleColor( UIColor.red, for: UIControlState.normal)
@@ -78,9 +85,41 @@ class ViewController: UIViewController {
             }
             
             SearchResults.text = text
+            SearchResults.textColor = UIColor.black
         }
-        catch {}
+        catch PatternError.unrecognizedToken(let token)
+        {
+            SearchResults.text = token + " not recognized"
+            SearchResults.textColor = UIColor.red
+        }
+        catch
+        {
+            SearchResults.text = "Unknown exception"
+            SearchResults.textColor = UIColor.red
+        }
     }
     
+    @IBAction func OnDotButton(_ sender: Any)
+    {
+        InputField.insertText(".")
+    }
+
+    @IBAction func OnStarButton(_ sender: Any)
+    {
+        InputField.insertText("*")
+    }
+
+    @IBAction func OnAnagramButton(_ sender: Any) 
+    {
+        
+        InputField.insertText("<>")
+        if let selRange = InputField.selectedTextRange
+        {
+            if let newPos = InputField.position(from: selRange.start, offset: -1)
+            {
+                InputField.selectedTextRange = InputField.textRange(from: newPos, to: newPos)
+            }
+        }
+    }
 }
 
