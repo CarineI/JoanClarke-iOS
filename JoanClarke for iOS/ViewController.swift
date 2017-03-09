@@ -19,7 +19,6 @@ class ViewController: UIViewController {
         SearchButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
         
         EnglishExplanation.layer.cornerRadius = SearchButton.bounds.size.width / 4
-        
         SearchResults.layer.cornerRadius =  SearchButton.bounds.size.width / 4
         
         DotButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
