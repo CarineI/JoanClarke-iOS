@@ -28,7 +28,11 @@ class TokenFactory
             startIndex = pattern.index(after: startIndex)
             return LetterToken(letter: char)
         }
-        // TODO : Star Token
+        if (char == "*")
+        {
+            startIndex = pattern.index(after: startIndex)
+            return StarToken()
+        }
         
         throw PatternError.unrecognizedToken(token: String(char))
     }

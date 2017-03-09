@@ -14,21 +14,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        print("We have no clue what we're doing")
-        CryptoOptionsControl.isHidden = true
-        SearchButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
+        print("We have some clue what we're doing")
         
+        SearchButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
         EnglishExplanation.layer.cornerRadius = SearchButton.bounds.size.width / 4
         SearchResults.layer.cornerRadius =  SearchButton.bounds.size.width / 4
-        
         DotButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
         StarButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
         AnagramButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
-        CryptoButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
         CryptoOptionsControl.layer.cornerRadius = SearchButton.bounds.size.width / 8
         
         InputField.becomeFirstResponder()
-        
         InputField.autocorrectionType = .no
         InputField.autocapitalizationType = .none
         
@@ -37,7 +33,6 @@ class ViewController: UIViewController {
     }
 
     @IBOutlet weak var CryptoOptionsControl: UISegmentedControl!
-    @IBOutlet weak var CryptoButton: UIButton!
     @IBOutlet weak var AnagramButton: UIButton!
     @IBOutlet weak var StarButton: UIButton!
     @IBOutlet weak var DotButton: UIButton!
@@ -124,23 +119,9 @@ class ViewController: UIViewController {
             }
         }
     }
-    @IBAction func OnCryptoButtonDown(_ sender: Any)
-    {
-
-    }
     
     @IBAction func OnCryptoOptionAction(_ sender: Any) {
         InputField.insertText(String(CryptoOptionsControl.selectedSegmentIndex))
-    }
-    
-    @IBAction func OnCryptoOptionButtonUp(_ sender: Any)
-    {
-        InputField.insertText(String(CryptoOptionsControl.selectedSegmentIndex))
-    }
-    
-    @IBAction func OnCryptoButton(_ sender: Any)
-    {
-         CryptoOptionsControl.isHidden = !CryptoOptionsControl.isHidden
     }
 }
 

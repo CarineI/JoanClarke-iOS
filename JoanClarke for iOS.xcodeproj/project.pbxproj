@@ -18,6 +18,8 @@
 		D563B5D81E023F3C00690051 /* WordDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = D563B5D71E023F3C00690051 /* WordDict.swift */; };
 		D563B5DA1E02412900690051 /* StubDict.txt in Resources */ = {isa = PBXBuildFile; fileRef = D563B5D91E02412900690051 /* StubDict.txt */; };
 		D563B5DC1E0241DA00690051 /* WordDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D563B5DB1E0241DA00690051 /* WordDictTests.swift */; };
+		D58801CD1E70E89000EFB73E /* StarToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58801CC1E70E89000EFB73E /* StarToken.swift */; };
+		D58801CF1E70FC6E00EFB73E /* StarTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58801CE1E70FC6E00EFB73E /* StarTokenTests.swift */; };
 		D58B1E2B1DE52CD000168F07 /* LetterTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2A1DE52CD000168F07 /* LetterTokenTests.swift */; };
 		D58B1E2D1DE5306000168F07 /* LetterSequenceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2C1DE5306000168F07 /* LetterSequenceToken.swift */; };
 		D58B1E2F1DE535E300168F07 /* LetterSequenceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2E1DE535E300168F07 /* LetterSequenceTokenTests.swift */; };
@@ -69,6 +71,8 @@
 		D563B5D71E023F3C00690051 /* WordDict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDict.swift; sourceTree = "<group>"; };
 		D563B5D91E02412900690051 /* StubDict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StubDict.txt; path = ../../../Desktop/StubDict.txt; sourceTree = "<group>"; };
 		D563B5DB1E0241DA00690051 /* WordDictTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDictTests.swift; sourceTree = "<group>"; };
+		D58801CC1E70E89000EFB73E /* StarToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarToken.swift; sourceTree = "<group>"; };
+		D58801CE1E70FC6E00EFB73E /* StarTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarTokenTests.swift; sourceTree = "<group>"; };
 		D58B1E2A1DE52CD000168F07 /* LetterTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTokenTests.swift; sourceTree = "<group>"; };
 		D58B1E2C1DE5306000168F07 /* LetterSequenceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSequenceToken.swift; sourceTree = "<group>"; };
 		D58B1E2E1DE535E300168F07 /* LetterSequenceTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSequenceTokenTests.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				D5063F471E440B6B00D0F05D /* Pattern.swift */,
 				D5063F491E440E9400D0F05D /* TokenFactory.swift */,
 				D5063F4B1E44157000D0F05D /* EndToken.swift */,
+				D58801CC1E70E89000EFB73E /* StarToken.swift */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 				D563B5DB1E0241DA00690051 /* WordDictTests.swift */,
 				D5E2C6E31E271F0000928655 /* DotTokenTests.swift */,
 				D5063F4D1E441FE800D0F05D /* PatternTests.swift */,
+				D58801CE1E70FC6E00EFB73E /* StarTokenTests.swift */,
 			);
 			path = "JoanClarke for iOSTests";
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				D5F851F41DC185E6008D1B5F /* Rule.swift in Sources */,
 				D5063F481E440B6B00D0F05D /* Pattern.swift in Sources */,
 				D5B57E281DD5798D00381BC2 /* Token.swift in Sources */,
+				D58801CD1E70E89000EFB73E /* StarToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +380,7 @@
 				D5CD31B31D9C9C0B0097F515 /* AppDelegate.swift in Sources */,
 				D563B5DC1E0241DA00690051 /* WordDictTests.swift in Sources */,
 				D58B1E2F1DE535E300168F07 /* LetterSequenceTokenTests.swift in Sources */,
+				D58801CF1E70FC6E00EFB73E /* StarTokenTests.swift in Sources */,
 				D5FD70361DCAC55100A8ECB9 /* RuleTests.swift in Sources */,
 				D5E2C6E41E271F0000928655 /* DotTokenTests.swift in Sources */,
 				D5BBAAFE1DA5E11600D7C1A4 /* Candidate_Tests.swift in Sources */,
