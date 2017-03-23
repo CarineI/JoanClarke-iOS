@@ -34,6 +34,20 @@ class TokenFactory
             return StarToken()
         }
         
+        // Multi-character tokens
+        if (char == "<")
+        {
+            let remainder = pattern.substring(from: pattern.index(after: startIndex))
+            let iCloseBracket = remainder.characters.index(of: ">")
+            if (iCloseBracket == nil)
+            {
+                throw PatternError.mismatchedBraces
+            }
+            let anagramPattern = remainder.substring(to: iCloseBracket!)
+            startIndex = pattern.index(startIndex, offsetBy: anagramPattern.characters.count + 2)
+            return try AnagramToken(pattern: anagramPattern)
+        }
+        
         throw PatternError.unrecognizedToken(token: String(char))
     }
 

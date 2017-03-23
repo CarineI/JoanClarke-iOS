@@ -122,6 +122,7 @@ class ViewController: UIViewController {
     
     @IBAction func OnCryptoOptionAction(_ sender: Any) {
         InputField.insertText(String(CryptoOptionsControl.selectedSegmentIndex))
+        CryptoOptionsControl.selectedSegmentIndex = -1
     }
 }
 

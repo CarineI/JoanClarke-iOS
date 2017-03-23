@@ -38,6 +38,7 @@
 		D5D9E3C11D6545300049BA65 /* JoanClarke_for_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9E3C01D6545300049BA65 /* JoanClarke_for_iOSUITests.swift */; };
 		D5E2C6E41E271F0000928655 /* DotTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E2C6E31E271F0000928655 /* DotTokenTests.swift */; };
 		D5E2C6E61E2727F500928655 /* DotSequenceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E2C6E51E2727F500928655 /* DotSequenceToken.swift */; };
+		D5F819291E8351B800A20DC3 /* AnagramToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F819281E8351B800A20DC3 /* AnagramToken.swift */; };
 		D5F851F41DC185E6008D1B5F /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F851F31DC185E6008D1B5F /* Rule.swift */; };
 		D5FD70361DCAC55100A8ECB9 /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FD70351DCAC55100A8ECB9 /* RuleTests.swift */; };
 /* End PBXBuildFile section */
@@ -96,6 +97,7 @@
 		D5D9E3C21D6545300049BA65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5E2C6E31E271F0000928655 /* DotTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotTokenTests.swift; sourceTree = "<group>"; };
 		D5E2C6E51E2727F500928655 /* DotSequenceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotSequenceToken.swift; sourceTree = "<group>"; };
+		D5F819281E8351B800A20DC3 /* AnagramToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnagramToken.swift; sourceTree = "<group>"; };
 		D5F851F31DC185E6008D1B5F /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		D5FD70351DCAC55100A8ECB9 /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +145,7 @@
 				D5063F491E440E9400D0F05D /* TokenFactory.swift */,
 				D5063F4B1E44157000D0F05D /* EndToken.swift */,
 				D58801CC1E70E89000EFB73E /* StarToken.swift */,
+				D5F819281E8351B800A20DC3 /* AnagramToken.swift */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5063F4A1E440E9400D0F05D /* TokenFactory.swift in Sources */,
+				D5F819291E8351B800A20DC3 /* AnagramToken.swift in Sources */,
 				D5063F4C1E44157000D0F05D /* EndToken.swift in Sources */,
 				D5D9E3A31D6545300049BA65 /* ViewController.swift in Sources */,
 				D5BBAAF81DA5D13E00D7C1A4 /* PatternError.swift in Sources */,

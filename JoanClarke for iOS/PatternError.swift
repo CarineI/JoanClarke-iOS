@@ -25,5 +25,6 @@ enum PatternError: Error
     case invalidTokenInAnagram
     /// Unrecognized token
     case unrecognizedToken(token : String)
-    
+    /// No nested anagrams
+    case noNestedAnagram
 }
