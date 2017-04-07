@@ -28,6 +28,7 @@
 		D5BBAAF81DA5D13E00D7C1A4 /* PatternError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBAAF71DA5D13E00D7C1A4 /* PatternError.swift */; };
 		D5BBAAFA1DA5D9FE00D7C1A4 /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBAAF91DA5D9FE00D7C1A4 /* Candidate.swift */; };
 		D5BBAAFE1DA5E11600D7C1A4 /* Candidate_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBAAFD1DA5E11600D7C1A4 /* Candidate_Tests.swift */; };
+		D5BCB1A61E9711870085B9F9 /* AnagramTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BCB1A51E9711870085B9F9 /* AnagramTokenTests.swift */; };
 		D5CD31B31D9C9C0B0097F515 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9E3A01D6545300049BA65 /* AppDelegate.swift */; };
 		D5D9E3A11D6545300049BA65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9E3A01D6545300049BA65 /* AppDelegate.swift */; };
 		D5D9E3A31D6545300049BA65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9E3A21D6545300049BA65 /* ViewController.swift */; };
@@ -82,6 +83,7 @@
 		D5BBAAF71DA5D13E00D7C1A4 /* PatternError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternError.swift; sourceTree = "<group>"; };
 		D5BBAAF91DA5D9FE00D7C1A4 /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candidate.swift; sourceTree = "<group>"; };
 		D5BBAAFD1DA5E11600D7C1A4 /* Candidate_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candidate_Tests.swift; sourceTree = "<group>"; };
+		D5BCB1A51E9711870085B9F9 /* AnagramTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnagramTokenTests.swift; sourceTree = "<group>"; };
 		D5D9E39D1D6545300049BA65 /* JoanClarke for iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JoanClarke for iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5D9E3A01D6545300049BA65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5D9E3A21D6545300049BA65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				D5E2C6E31E271F0000928655 /* DotTokenTests.swift */,
 				D5063F4D1E441FE800D0F05D /* PatternTests.swift */,
 				D58801CE1E70FC6E00EFB73E /* StarTokenTests.swift */,
+				D5BCB1A51E9711870085B9F9 /* AnagramTokenTests.swift */,
 			);
 			path = "JoanClarke for iOSTests";
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5CD31B31D9C9C0B0097F515 /* AppDelegate.swift in Sources */,
+				D5BCB1A61E9711870085B9F9 /* AnagramTokenTests.swift in Sources */,
 				D563B5DC1E0241DA00690051 /* WordDictTests.swift in Sources */,
 				D58B1E2F1DE535E300168F07 /* LetterSequenceTokenTests.swift in Sources */,
 				D58801CF1E70FC6E00EFB73E /* StarTokenTests.swift in Sources */,
