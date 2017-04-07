@@ -51,7 +51,7 @@ class LetterSequenceToken : Token
     
     override func ExplainInEnglish() -> String?
     {
-        return NSString(format: "the letters %s in sequence", _letters) as String
+        return String(format: "the letters %@ in sequence", _letters)
     }
     
     override func MergeWith(_ second: Token, inAnagram: Bool) -> Token?

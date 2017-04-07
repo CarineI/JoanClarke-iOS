@@ -19,7 +19,8 @@ class AnagramToken : Token
         var index = pattern.characters.startIndex
         let end = pattern.characters.endIndex
 
-        repeat{
+        while (index < end)
+        {
             let child = try TokenFactory.CreateToken(pattern: pattern, startIndex: &index)
             if (child is AnagramToken)
             {
@@ -28,7 +29,7 @@ class AnagramToken : Token
             
             child.InAnagram = true
             _childTokenStack.append(child)
-        }while (index < end)
+        }
 
         super.init()
 

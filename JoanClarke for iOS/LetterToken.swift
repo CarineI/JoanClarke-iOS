@@ -62,7 +62,7 @@ class LetterToken : Token
     
     override func ExplainInEnglish() -> String?
     {
-        return NSString(format: "the letter %s", _letter) as String
+        return String(format: "the letter %@", _letter)
     }
     
     override func MergeWith(_ second: Token, inAnagram: Bool) -> Token?

@@ -22,9 +22,10 @@ class Pattern
         var index = raw.characters.startIndex
         let end = raw.characters.endIndex
         
-        repeat{
+        while (index < end)
+        {
             try _tokenStack.append(TokenFactory.CreateToken(pattern: raw, startIndex: &index))
-        }while (index < end)
+        }
         _tokenStack.append(TokenFactory.CreateEndToken(pattern: raw))
         
         
@@ -77,6 +78,74 @@ class Pattern
         }
         
         return true
+    }
+
+    func WordLengthOfMatches(minLength: inout Int, maxLength: inout Int)
+    {
+        minLength = 0
+        maxLength = 0
+        var min = 0
+        var max = 0
+        for i in 0..<_tokenStack.count
+        {
+            _tokenStack[i].GetLengthOfMatches(&min, max: &max)
+            minLength += min
+            maxLength += max
+        }
+        
+        // todo : deal with rules hanging off endtoken
+        
+    }
+
+    func ExplainInEnglish() -> String
+    {
+        var length : String
+        var minLength = 0
+        var maxLength = 0
+        
+        WordLengthOfMatches(minLength: &minLength, maxLength: &maxLength)
+        if (minLength == maxLength)
+        {
+            length = String(format: "Words of length %d", minLength)
+        }
+        else if (maxLength >= 1000)
+        {
+            length = String(format: "Words of at least length %d", minLength)
+        }
+        else
+        {
+            length = String(format: "Words between %d and %d letters long", minLength, maxLength)
+        }
+        
+        
+        var first = true
+        var builder = length + "\n"
+        for i in 0..<_tokenStack.count
+        {
+            let english = _tokenStack[i].ExplainInEnglish()
+            if( english == nil)
+            {
+                continue;
+            }
+            
+            if (_tokenStack.count == 1)
+            {
+                builder.append("which contain")
+            }
+            else if (first)
+            {
+                builder.append("which start with " + english! + "\n")
+                first = false
+            }
+            else
+            {
+                builder.append("followed by " + english! + "\n")
+            }
+        }
+        
+        // add multiword support here
+        
+        return builder
     }
     
 }

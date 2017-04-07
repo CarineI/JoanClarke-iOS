@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         InputField.autocapitalizationType = .none
         
         dict = WordDict()
-        dict!.LoadFromBundle()
+        dict!.LoadFromBundle(full: true)
     }
 
     @IBOutlet weak var CryptoOptionsControl: UISegmentedControl!
@@ -64,12 +64,29 @@ class ViewController: UIViewController {
  
     // InputField changed
     @IBAction func EditingChanged(_ sender: Any) {
-       SearchResults.text = InputField.text!
+       do
+       {
+            let pattern = try Pattern(raw: InputField.text!)
+            EnglishExplanation.text = pattern.ExplainInEnglish()
+        }
+       catch PatternError.unrecognizedToken(let token)
+       {
+            SearchResults.text = token + " not recognized"
+            SearchResults.textColor = UIColor.red
+       }
+       catch
+       {
+            SearchResults.text = "Unknown exception"
+            SearchResults.textColor = UIColor.red
+        }
     }
     
     // Return key
-    @IBAction func PrimaryAction(_ sender: Any) {
+    @IBAction func PrimaryAction(_ sender: Any)
+    {
+        SearchClicked(sender)
     }
+    
     @IBAction func SearchClicked(_ sender: Any)
     {
         do{
@@ -84,6 +101,7 @@ class ViewController: UIViewController {
             
             SearchResults.text = text
             SearchResults.textColor = UIColor.black
+            SearchResults.flashScrollIndicators()
         }
         catch PatternError.unrecognizedToken(let token)
         {

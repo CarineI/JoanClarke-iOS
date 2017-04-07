@@ -29,6 +29,7 @@
 		D5BBAAFA1DA5D9FE00D7C1A4 /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBAAF91DA5D9FE00D7C1A4 /* Candidate.swift */; };
 		D5BBAAFE1DA5E11600D7C1A4 /* Candidate_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBAAFD1DA5E11600D7C1A4 /* Candidate_Tests.swift */; };
 		D5BCB1A61E9711870085B9F9 /* AnagramTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BCB1A51E9711870085B9F9 /* AnagramTokenTests.swift */; };
+		D5BCB1A81E9728180085B9F9 /* FullDictionary.txt in Resources */ = {isa = PBXBuildFile; fileRef = D5BCB1A71E9728180085B9F9 /* FullDictionary.txt */; };
 		D5CD31B31D9C9C0B0097F515 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9E3A01D6545300049BA65 /* AppDelegate.swift */; };
 		D5D9E3A11D6545300049BA65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9E3A01D6545300049BA65 /* AppDelegate.swift */; };
 		D5D9E3A31D6545300049BA65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9E3A21D6545300049BA65 /* ViewController.swift */; };
@@ -84,6 +85,7 @@
 		D5BBAAF91DA5D9FE00D7C1A4 /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candidate.swift; sourceTree = "<group>"; };
 		D5BBAAFD1DA5E11600D7C1A4 /* Candidate_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candidate_Tests.swift; sourceTree = "<group>"; };
 		D5BCB1A51E9711870085B9F9 /* AnagramTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnagramTokenTests.swift; sourceTree = "<group>"; };
+		D5BCB1A71E9728180085B9F9 /* FullDictionary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FullDictionary.txt; path = ../../../Downloads/FullDictionary.txt; sourceTree = "<group>"; };
 		D5D9E39D1D6545300049BA65 /* JoanClarke for iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JoanClarke for iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5D9E3A01D6545300049BA65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5D9E3A21D6545300049BA65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				D563B5D91E02412900690051 /* StubDict.txt */,
+				D5BCB1A71E9728180085B9F9 /* FullDictionary.txt */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5BCB1A81E9728180085B9F9 /* FullDictionary.txt in Resources */,
 				D563B5DA1E02412900690051 /* StubDict.txt in Resources */,
 				D5D9E3AB1D6545300049BA65 /* LaunchScreen.storyboard in Resources */,
 				D5D9E3A81D6545300049BA65 /* Assets.xcassets in Resources */,

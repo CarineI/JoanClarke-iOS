@@ -22,8 +22,8 @@ class WordDictTests: XCTestCase {
     }
 
     func testExample() {
-            let stb = WordDict()
-            stb.LoadFromBundle()
+        let stb = WordDict()
+        stb.LoadFromBundle(full: false)
     }
 
     func testPerformanceExample() {
