@@ -23,6 +23,7 @@
 		D58B1E2B1DE52CD000168F07 /* LetterTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2A1DE52CD000168F07 /* LetterTokenTests.swift */; };
 		D58B1E2D1DE5306000168F07 /* LetterSequenceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2C1DE5306000168F07 /* LetterSequenceToken.swift */; };
 		D58B1E2F1DE535E300168F07 /* LetterSequenceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2E1DE535E300168F07 /* LetterSequenceTokenTests.swift */; };
+		D5A25A001EA83D9800EE8F33 /* CryptoToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A259FF1EA83D9800EE8F33 /* CryptoToken.swift */; };
 		D5B57E281DD5798D00381BC2 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B57E271DD5798D00381BC2 /* Token.swift */; };
 		D5B57E2A1DD5820E00381BC2 /* LetterToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B57E291DD5820E00381BC2 /* LetterToken.swift */; };
 		D5BBAAF81DA5D13E00D7C1A4 /* PatternError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBAAF71DA5D13E00D7C1A4 /* PatternError.swift */; };
@@ -79,6 +80,7 @@
 		D58B1E2A1DE52CD000168F07 /* LetterTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTokenTests.swift; sourceTree = "<group>"; };
 		D58B1E2C1DE5306000168F07 /* LetterSequenceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSequenceToken.swift; sourceTree = "<group>"; };
 		D58B1E2E1DE535E300168F07 /* LetterSequenceTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSequenceTokenTests.swift; sourceTree = "<group>"; };
+		D5A259FF1EA83D9800EE8F33 /* CryptoToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoToken.swift; sourceTree = "<group>"; };
 		D5B57E271DD5798D00381BC2 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		D5B57E291DD5820E00381BC2 /* LetterToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterToken.swift; sourceTree = "<group>"; };
 		D5BBAAF71DA5D13E00D7C1A4 /* PatternError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternError.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				D5396F4F1D8A2AFC003EF0CB /* Claim.swift */,
+				D5A259FF1EA83D9800EE8F33 /* CryptoToken.swift */,
 				D5BBAAF71DA5D13E00D7C1A4 /* PatternError.swift */,
 				D5BBAAF91DA5D9FE00D7C1A4 /* Candidate.swift */,
 				D5B57E291DD5820E00381BC2 /* LetterToken.swift */,
@@ -366,6 +369,7 @@
 				D5063F4A1E440E9400D0F05D /* TokenFactory.swift in Sources */,
 				D5F819291E8351B800A20DC3 /* AnagramToken.swift in Sources */,
 				D5063F4C1E44157000D0F05D /* EndToken.swift in Sources */,
+				D5A25A001EA83D9800EE8F33 /* CryptoToken.swift in Sources */,
 				D5D9E3A31D6545300049BA65 /* ViewController.swift in Sources */,
 				D5BBAAF81DA5D13E00D7C1A4 /* PatternError.swift in Sources */,
 				D58B1E2D1DE5306000168F07 /* LetterSequenceToken.swift in Sources */,

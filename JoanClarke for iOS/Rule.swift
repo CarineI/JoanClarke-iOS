@@ -223,9 +223,19 @@ class Rule
             return expanded
         }
         
-        // the windows version has an @ number expander
-        
         let one = tokens.index(after: tokens.startIndex)
+
+        // the windows version has an @ number expander
+        // @ tokens are two chars. Convert them to a single char for subsequent parsing
+        if (tokens.characters.count >= 2 && tokens[one] == "@")
+        {
+            let two = tokens.index(after: one)
+            if (tokens[two] < "1" || tokens[two] > "9")
+            {
+                return ""  // TODO: Windows version throws
+            }
+        }
+        
         if (tokens.characters.count == 3 && tokens[one] == "-")
         {
             var expanded = ""

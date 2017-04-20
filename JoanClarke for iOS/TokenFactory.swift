@@ -22,6 +22,11 @@ class TokenFactory
             startIndex = pattern.index(after: startIndex)
             return DotToken(tokenChar: char)
         }
+//        if (CryptoToken.IsToken(ch: String(char)))
+//        {
+//            startIndex = pattern.index(after: startIndex)
+//            return CryptoToken(codedCharacter: char)
+//        }
         // TODO: CryptoToken
         if ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z"))
         {

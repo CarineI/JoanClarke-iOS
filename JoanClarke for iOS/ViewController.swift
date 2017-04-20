@@ -66,7 +66,8 @@ class ViewController: UIViewController {
     @IBAction func EditingChanged(_ sender: Any) {
        do
        {
-            let pattern = try Pattern(raw: InputField.text!)
+            let trimmed = InputField.text!.trimmingCharacters(in: NSCharacterSet.whitespaces)
+            let pattern = try Pattern(raw: trimmed)
             EnglishExplanation.text = pattern.ExplainInEnglish()
         }
        catch PatternError.unrecognizedToken(let token)
@@ -90,7 +91,8 @@ class ViewController: UIViewController {
     @IBAction func SearchClicked(_ sender: Any)
     {
         do{
-            let pattern =  try Pattern(raw: InputField.text!)
+            let trimmed = InputField.text!.trimmingCharacters(in: NSCharacterSet.whitespaces)
+            let pattern =  try Pattern(raw: trimmed)
             let searchResults = dict!.DoSearch(pattern: pattern)
             var text  = ""
             for result in searchResults
