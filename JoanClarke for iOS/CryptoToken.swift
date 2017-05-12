@@ -19,6 +19,11 @@ class CryptoToken : Token
     {
         _codedCharacter = String(codedCharacter)
         _holdsRefCount = false
+        
+        if (CryptoToken._dataMap[_codedCharacter] == nil)
+        {
+            CryptoToken._dataMap[_codedCharacter] = CryptoData()
+        }
         super.init()
     }
     
@@ -248,7 +253,7 @@ class CryptoToken : Token
     
     override func ExplainInEnglish() -> String?
     {
-        return String(format: " a letter (%@) that matches any other (%@)", _codedCharacter)
+        return String(format: " a letter (%@) that matches any other (%@)", _codedCharacter, _codedCharacter)
     }
 
     override func GetPrefix() -> String?

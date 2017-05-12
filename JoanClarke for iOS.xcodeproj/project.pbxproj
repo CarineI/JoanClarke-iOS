@@ -32,6 +32,7 @@
 		D5BCB1A61E9711870085B9F9 /* AnagramTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BCB1A51E9711870085B9F9 /* AnagramTokenTests.swift */; };
 		D5BCB1A81E9728180085B9F9 /* FullDictionary.txt in Resources */ = {isa = PBXBuildFile; fileRef = D5BCB1A71E9728180085B9F9 /* FullDictionary.txt */; };
 		D5CD31B31D9C9C0B0097F515 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9E3A01D6545300049BA65 /* AppDelegate.swift */; };
+		D5D7C7D11EC53CD20002A212 /* CryptoTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D7C7D01EC53CD20002A212 /* CryptoTokenTests.swift */; };
 		D5D9E3A11D6545300049BA65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9E3A01D6545300049BA65 /* AppDelegate.swift */; };
 		D5D9E3A31D6545300049BA65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9E3A21D6545300049BA65 /* ViewController.swift */; };
 		D5D9E3A61D6545300049BA65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5D9E3A41D6545300049BA65 /* Main.storyboard */; };
@@ -88,6 +89,7 @@
 		D5BBAAFD1DA5E11600D7C1A4 /* Candidate_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candidate_Tests.swift; sourceTree = "<group>"; };
 		D5BCB1A51E9711870085B9F9 /* AnagramTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnagramTokenTests.swift; sourceTree = "<group>"; };
 		D5BCB1A71E9728180085B9F9 /* FullDictionary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FullDictionary.txt; path = ../../../Downloads/FullDictionary.txt; sourceTree = "<group>"; };
+		D5D7C7D01EC53CD20002A212 /* CryptoTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTokenTests.swift; sourceTree = "<group>"; };
 		D5D9E39D1D6545300049BA65 /* JoanClarke for iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JoanClarke for iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5D9E3A01D6545300049BA65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5D9E3A21D6545300049BA65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				D5063F4D1E441FE800D0F05D /* PatternTests.swift */,
 				D58801CE1E70FC6E00EFB73E /* StarTokenTests.swift */,
 				D5BCB1A51E9711870085B9F9 /* AnagramTokenTests.swift */,
+				D5D7C7D01EC53CD20002A212 /* CryptoTokenTests.swift */,
 			);
 			path = "JoanClarke for iOSTests";
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				D5BBAAFE1DA5E11600D7C1A4 /* Candidate_Tests.swift in Sources */,
 				D50A40EB1DB1C855005D26C9 /* LetterSetTests.swift in Sources */,
 				D5D9E3B61D6545300049BA65 /* Claim_Tests.swift in Sources */,
+				D5D7C7D11EC53CD20002A212 /* CryptoTokenTests.swift in Sources */,
 				D5063F4E1E441FE800D0F05D /* PatternTests.swift in Sources */,
 				D58B1E2B1DE52CD000168F07 /* LetterTokenTests.swift in Sources */,
 			);
