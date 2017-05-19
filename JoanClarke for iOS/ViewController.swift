@@ -8,8 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate {
     var dict : WordDict?
+    
+    @IBOutlet weak var SearchField: UISearchBar!
+    @IBOutlet weak var CryptoOptionsControl: UISegmentedControl!
+    @IBOutlet weak var AnagramButton: UIButton!
+    @IBOutlet weak var StarButton: UIButton!
+    @IBOutlet weak var DotButton: UIButton!
+    @IBOutlet weak var SearchResults: UITextView!
+    @IBOutlet weak var EnglishExplanation: UITextView!
+    @IBOutlet weak var InputField: UITextField!
+    @IBOutlet weak var SearchButton: UIButton!
+    @IBOutlet weak var HelpLinkButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,28 +36,27 @@ class ViewController: UIViewController {
         CryptoOptionsControl.layer.cornerRadius = SearchButton.bounds.size.width / 8
         
         InputField.becomeFirstResponder()
+
         InputField.autocorrectionType = .no
         InputField.autocapitalizationType = .none
         
         dict = WordDict()
         dict!.LoadFromBundle(full: true)
+        
+        let attrStr = try! NSAttributedString(
+            data: "<span style='color:white; text-decoration:underline' href='http://joanclarke.info'>www.joanclarke.info</span>".data(
+                using: String.Encoding.unicode, allowLossyConversion: true)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            documentAttributes: nil)
+        HelpLinkButton.setAttributedTitle(attrStr, for: UIControlState.normal)
+        
     }
-
-    @IBOutlet weak var CryptoOptionsControl: UISegmentedControl!
-    @IBOutlet weak var AnagramButton: UIButton!
-    @IBOutlet weak var StarButton: UIButton!
-    @IBOutlet weak var DotButton: UIButton!
-    @IBOutlet weak var SearchResults: UITextView!
-    @IBOutlet weak var EnglishExplanation: UITextView!
-    override func didReceiveMemoryWarning() {
+   
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
-    @IBOutlet weak var InputField: UITextField!
-
-    @IBOutlet weak var SearchButton: UIButton!
     
     @IBAction func TouchInButton(_ sender: Any) {
           SearchButton.setTitleColor( UIColor.red, for: UIControlState.normal)
@@ -139,10 +149,17 @@ class ViewController: UIViewController {
             }
         }
     }
+
     
-    @IBAction func OnCryptoOptionAction(_ sender: Any) {
+    @IBAction func OnCryptoOptionAction(_ sender: Any)
+    {
         InputField.insertText(String(CryptoOptionsControl.selectedSegmentIndex))
         CryptoOptionsControl.selectedSegmentIndex = -1
     }
+    
+    @IBAction func helpTouchUpInside(_ sender: Any) {
+        UIApplication.shared.openURL(NSURL(string:"http://joanclarke.info")! as URL)
+    }
+
 }
 

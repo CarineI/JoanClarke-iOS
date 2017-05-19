@@ -23,6 +23,8 @@
 		D58B1E2B1DE52CD000168F07 /* LetterTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2A1DE52CD000168F07 /* LetterTokenTests.swift */; };
 		D58B1E2D1DE5306000168F07 /* LetterSequenceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2C1DE5306000168F07 /* LetterSequenceToken.swift */; };
 		D58B1E2F1DE535E300168F07 /* LetterSequenceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B1E2E1DE535E300168F07 /* LetterSequenceTokenTests.swift */; };
+		D59D202F1ECE787A00995B6D /* JoanClarke_310x310-Padding.png in Resources */ = {isa = PBXBuildFile; fileRef = D59D202E1ECE787A00995B6D /* JoanClarke_310x310-Padding.png */; };
+		D59D20311ECE7A3000995B6D /* JoanClarke_620x300-Padding.png in Resources */ = {isa = PBXBuildFile; fileRef = D59D20301ECE7A3000995B6D /* JoanClarke_620x300-Padding.png */; };
 		D5A25A001EA83D9800EE8F33 /* CryptoToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A259FF1EA83D9800EE8F33 /* CryptoToken.swift */; };
 		D5B57E281DD5798D00381BC2 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B57E271DD5798D00381BC2 /* Token.swift */; };
 		D5B57E2A1DD5820E00381BC2 /* LetterToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B57E291DD5820E00381BC2 /* LetterToken.swift */; };
@@ -81,6 +83,8 @@
 		D58B1E2A1DE52CD000168F07 /* LetterTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTokenTests.swift; sourceTree = "<group>"; };
 		D58B1E2C1DE5306000168F07 /* LetterSequenceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSequenceToken.swift; sourceTree = "<group>"; };
 		D58B1E2E1DE535E300168F07 /* LetterSequenceTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSequenceTokenTests.swift; sourceTree = "<group>"; };
+		D59D202E1ECE787A00995B6D /* JoanClarke_310x310-Padding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "JoanClarke_310x310-Padding.png"; path = "../../JC-Assets/JoanClarke_310x310-Padding.png"; sourceTree = "<group>"; };
+		D59D20301ECE7A3000995B6D /* JoanClarke_620x300-Padding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "JoanClarke_620x300-Padding.png"; path = "../../JC-Assets/JoanClarke_620x300-Padding.png"; sourceTree = "<group>"; };
 		D5A259FF1EA83D9800EE8F33 /* CryptoToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoToken.swift; sourceTree = "<group>"; };
 		D5B57E271DD5798D00381BC2 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		D5B57E291DD5820E00381BC2 /* LetterToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterToken.swift; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 		D563B5D21E023C7300690051 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D59D20301ECE7A3000995B6D /* JoanClarke_620x300-Padding.png */,
+				D59D202E1ECE787A00995B6D /* JoanClarke_310x310-Padding.png */,
 				D563B5D91E02412900690051 /* StubDict.txt */,
 				D5BCB1A71E9728180085B9F9 /* FullDictionary.txt */,
 			);
@@ -340,8 +346,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D59D20311ECE7A3000995B6D /* JoanClarke_620x300-Padding.png in Resources */,
 				D5BCB1A81E9728180085B9F9 /* FullDictionary.txt in Resources */,
 				D563B5DA1E02412900690051 /* StubDict.txt in Resources */,
+				D59D202F1ECE787A00995B6D /* JoanClarke_310x310-Padding.png in Resources */,
 				D5D9E3AB1D6545300049BA65 /* LaunchScreen.storyboard in Resources */,
 				D5D9E3A81D6545300049BA65 /* Assets.xcassets in Resources */,
 				D5D9E3A61D6545300049BA65 /* Main.storyboard in Resources */,
