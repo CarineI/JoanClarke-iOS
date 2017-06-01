@@ -22,13 +22,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bne-iV-aba">
-                                <rect key="frame" x="327" y="44" width="30" height="30"/>
+                                <rect key="frame" x="294" y="44" width="63" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="X">
+                                        <fragment content="Search">
                                             <attributes>
                                                 <font key="NSFont" metaFont="cellTitle"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -36,13 +36,16 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <state key="disabled">
+                                    <attributedString key="attributedTitle"/>
+                                </state>
                                 <connections>
                                     <action selector="SearchClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A26-7c-5ij"/>
                                     <action selector="TouchInButton:" destination="BYZ-38-t0r" eventType="touchDragInside" id="aKh-jG-ShN"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your search query here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PXc-gp-uZg">
-                                <rect key="frame" x="16" y="44" width="303" height="30"/>
+                                <rect key="frame" x="16" y="44" width="273" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" searchField="YES"/>
@@ -175,11 +178,17 @@
                                     <action selector="helpTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J1i-cu-foQ"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="R1W-aR-mhZ">
+                                <rect key="frame" x="186" y="391" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <color key="color" red="0.33638307452201843" green="0.33223271369934082" blue="0.53949952125549316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.33638307452201843" green="0.33223271369934082" blue="0.53949952125549316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="AnagramButton" destination="QDE-UX-ndI" id="eqE-Gu-uMZ"/>
+                        <outlet property="BusyIndicator" destination="R1W-aR-mhZ" id="JPJ-jm-C9V"/>
                         <outlet property="CryptoOptionsControl" destination="x18-M8-eXl" id="DYc-ZQ-RxG"/>
                         <outlet property="DotButton" destination="WPF-Os-FB1" id="3Bw-hT-n7l"/>
                         <outlet property="EnglishExplanation" destination="gVe-gP-Ysf" id="PGV-9i-2FO"/>
@@ -195,4 +204,5 @@
             <point key="canvasLocation" x="159.19999999999999" y="178.56071964017991"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.33638307452201843" green="0.33223271369934082" blue="0.53949952125549316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

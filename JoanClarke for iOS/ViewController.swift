@@ -12,6 +12,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
     var dict : WordDict?
     
     @IBOutlet weak var SearchField: UISearchBar!
+    @IBOutlet weak var BusyIndicator: UIActivityIndicatorView!
     @IBOutlet weak var CryptoOptionsControl: UISegmentedControl!
     @IBOutlet weak var AnagramButton: UIButton!
     @IBOutlet weak var StarButton: UIButton!
@@ -27,13 +28,14 @@ class ViewController: UIViewController, UISearchBarDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         print("We have some clue what we're doing")
         
-        SearchButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
-        EnglishExplanation.layer.cornerRadius = SearchButton.bounds.size.width / 4
-        SearchResults.layer.cornerRadius =  SearchButton.bounds.size.width / 4
-        DotButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
-        StarButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
-        AnagramButton.layer.cornerRadius = SearchButton.bounds.size.width / 2
-        CryptoOptionsControl.layer.cornerRadius = SearchButton.bounds.size.width / 8
+        SearchButton.layer.cornerRadius = SearchButton.bounds.size.height / 2
+        EnglishExplanation.layer.cornerRadius = SearchButton.bounds.size.height / 4
+        SearchResults.layer.cornerRadius =  SearchButton.bounds.size.height / 4
+        DotButton.layer.cornerRadius = SearchButton.bounds.size.height / 2
+        StarButton.layer.cornerRadius = SearchButton.bounds.size.height / 2
+        AnagramButton.layer.cornerRadius = SearchButton.bounds.size.height / 2
+        CryptoOptionsControl.layer.cornerRadius = SearchButton.bounds.size.height / 8
+
         
         InputField.becomeFirstResponder()
 
@@ -100,6 +102,18 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     @IBAction func SearchClicked(_ sender: Any)
     {
+        BusyIndicator.startAnimating()
+        SearchButton.tintColor = UIColor.darkGray
+        SearchButton.isEnabled = false
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(10))
+        {
+            self.DoSearch()
+        }
+    }
+    
+    func DoSearch()
+    {
         do{
             let trimmed = InputField.text!.trimmingCharacters(in: NSCharacterSet.whitespaces)
             let pattern =  try Pattern(raw: trimmed)
@@ -114,6 +128,9 @@ class ViewController: UIViewController, UISearchBarDelegate {
             SearchResults.text = text
             SearchResults.textColor = UIColor.black
             SearchResults.flashScrollIndicators()
+            BusyIndicator.stopAnimating()
+            SearchButton.tintColor = UIColor.white
+            SearchButton.isEnabled = true
         }
         catch PatternError.unrecognizedToken(let token)
         {

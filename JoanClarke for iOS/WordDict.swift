@@ -32,6 +32,11 @@ class WordDict
             _wordListAlpha.append(contentsOf: temp)
             _wordListAlpha.sort()
             
+            while (_wordListAlpha[0].characters.count == 0)
+            {
+                _wordListAlpha.remove(at: 0)
+            }
+            
             _wordListLength.append(contentsOf: temp)
             _wordListLength.sort(by: { s1, s2 in
                 if (s1.characters.count !=  s2.characters.count)
@@ -39,6 +44,11 @@ class WordDict
                     return s1.characters.count <  s2.characters.count
                 }
                return  (s1.compare(s2) == ComparisonResult.orderedAscending) })
+
+            while (_wordListLength[0].characters.count == 0)
+            {
+                _wordListLength.remove(at: 0)
+            }
         }
         catch
         {
