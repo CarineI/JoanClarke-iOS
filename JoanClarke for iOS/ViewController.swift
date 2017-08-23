@@ -11,13 +11,18 @@ import UIKit
 class ViewController: UIViewController, UISearchBarDelegate {
     var dict : WordDict?
     
-    @IBOutlet weak var SearchField: UISearchBar!
+    @IBOutlet weak var ResultsBorderButton: UIButton!
+    @IBOutlet weak var EnglishBorderButton: UIButton!
+
+    @IBOutlet weak var ResultsBottom: UITextView!
+    @IBOutlet weak var EnglishBottom: UITextView!
     @IBOutlet weak var BusyIndicator: UIActivityIndicatorView!
     @IBOutlet weak var CryptoOptionsControl: UISegmentedControl!
     @IBOutlet weak var AnagramButton: UIButton!
     @IBOutlet weak var StarButton: UIButton!
     @IBOutlet weak var DotButton: UIButton!
     @IBOutlet weak var SearchResults: UITextView!
+    
     @IBOutlet weak var EnglishExplanation: UITextView!
     @IBOutlet weak var InputField: UITextField!
     @IBOutlet weak var SearchButton: UIButton!
@@ -29,12 +34,16 @@ class ViewController: UIViewController, UISearchBarDelegate {
         print("We have some clue what we're doing")
         
         SearchButton.layer.cornerRadius = SearchButton.bounds.size.height / 2
-        EnglishExplanation.layer.cornerRadius = SearchButton.bounds.size.height / 4
-        SearchResults.layer.cornerRadius =  SearchButton.bounds.size.height / 4
+        //EnglishExplanation.layer.cornerRadius = SearchButton.bounds.size.height / 4
+        //SearchResults.layer.cornerRadius =  SearchButton.bounds.size.height / 4
         DotButton.layer.cornerRadius = SearchButton.bounds.size.height / 2
         StarButton.layer.cornerRadius = SearchButton.bounds.size.height / 2
         AnagramButton.layer.cornerRadius = SearchButton.bounds.size.height / 2
         CryptoOptionsControl.layer.cornerRadius = SearchButton.bounds.size.height / 8
+        EnglishBorderButton.layer.cornerRadius = SearchButton.bounds.size.height / 4
+        EnglishBottom.layer.cornerRadius = SearchButton.bounds.size.height / 4
+        ResultsBorderButton.layer.cornerRadius = SearchButton.bounds.size.height / 4
+        ResultsBottom.layer.cornerRadius = SearchButton.bounds.size.height / 4
 
         
         InputField.becomeFirstResponder()
@@ -51,6 +60,11 @@ class ViewController: UIViewController, UISearchBarDelegate {
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         HelpLinkButton.setAttributedTitle(attrStr, for: UIControlState.normal)
+        
+        SearchResults.frame = CGRect(x: ResultsBorderButton.frame.minX,
+                                     y: ResultsBorderButton.frame.minY + 30,
+                                     width: ResultsBorderButton.frame.width,
+                                     height:ResultsBottom.frame.maxY - 5 - (ResultsBorderButton.frame.minY + 30))
         
     }
    
@@ -178,5 +192,91 @@ class ViewController: UIViewController, UISearchBarDelegate {
         UIApplication.shared.openURL(NSURL(string:"http://joanclarke.info")! as URL)
     }
 
+    @IBAction func ToggleEnglishVisibile(_ sender: Any)
+    {
+        let gap = CGFloat(33)
+        let buttonHeight = CGFloat(30)
+        let buttonBottom = CGFloat(5)
+        
+        let bottom = SearchResults.frame.maxY
+        let width = EnglishBorderButton.frame.width
+        let x = EnglishBorderButton.frame.minX
+        let y = EnglishBorderButton.frame.minY
+        
+        EnglishExplanation.isHidden = !EnglishExplanation.isHidden;
+        EnglishBottom.isHidden = EnglishExplanation.isHidden
+        
+        if (EnglishExplanation.isHidden)
+        {
+            EnglishBorderButton.frame = CGRect(x: x, y: y, width: width, height: buttonHeight)
+            
+            let resultTop =  y + buttonHeight + gap
+            let resultBottom = bottom + buttonBottom
+            
+            ResultsBorderButton.frame = CGRect(x: x, y: resultTop, width: width, height: bottom - resultTop - buttonBottom)
+            ResultsBottom.frame = CGRect(x: x, y: resultBottom - 2 * buttonBottom, width: width, height: buttonBottom * 2)
+            SearchResults.frame = CGRect(x: x, y: resultTop + buttonHeight, width: width, height: bottom - (resultTop + buttonHeight))
+        }
+        else
+        {
+            EnglishBorderButton.frame = CGRect(x: x, y: y, width: width, height: buttonHeight + buttonBottom)
+        
+            let resultTop =  EnglishBottom.frame.maxY + gap
+            let resultBottom = bottom + buttonBottom
+            
+            ResultsBorderButton.frame = CGRect(x: x, y: resultTop, width: width, height: bottom - resultTop - buttonBottom)
+            ResultsBottom.frame = CGRect(x: x, y: resultBottom - 2 * buttonBottom, width: width, height: buttonBottom * 2)
+            SearchResults.frame = CGRect(x: x, y: resultTop + buttonHeight, width: width, height: bottom - (resultTop + buttonHeight))
+        }
+    }
+    
+    @IBAction func ToggleResultsVisible(_ sender: Any) {
+        let gap = CGFloat(33)
+        let buttonHeight = CGFloat(30)
+        let buttonBottom = CGFloat(5)
+        
+        let englishTop = EnglishBorderButton.frame.minY
+        let x = EnglishBorderButton.frame.minX
+        let width = EnglishBorderButton.frame.width
+        
+        SearchResults.isHidden = !SearchResults.isHidden
+        ResultsBottom.isHidden = SearchResults.isHidden
+
+        let resultsBottom = ResultsBottom.frame.maxY  // even if it's hidden
+
+        if (SearchResults.isHidden)  // collapsing
+        {
+            // Keep the bottom where it is, pull top down
+            let resultHeight = buttonHeight
+            ResultsBorderButton.frame = CGRect(x: x,
+                                               y: resultsBottom - resultHeight,
+                                               width: width,
+                                               height: resultHeight)
+        }
+        else  // expanding results
+        {
+            // Keep the bottom where it is, stretch top up
+            let resultHeight = SearchResults.frame.height + buttonHeight + buttonBottom;
+            ResultsBorderButton.frame = CGRect(x: x,
+                                               y: resultsBottom - resultHeight,
+                                               width: width,
+                                               height: buttonHeight * 2)
+        }
+        
+        let englishBottom = ResultsBorderButton.frame.minY - gap
+
+        EnglishBottom.frame = CGRect(x: x,
+                                     y: englishBottom - buttonBottom * 2,
+                                     width: width,
+                                     height: buttonBottom * 2)
+        EnglishExplanation.frame = CGRect(x: x,
+                                          y: englishTop + buttonHeight,
+                                          width: width,
+                                          height: englishBottom - buttonBottom - (englishTop + buttonHeight))
+        EnglishBorderButton.frame = CGRect(x: x,
+                                          y: englishTop,
+                                          width: width,
+                                          height: buttonHeight * 2)
+    }
 }
 
