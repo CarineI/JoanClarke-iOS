@@ -63,7 +63,6 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
         RelayoutTabs()
     }
-    
    
     override func didReceiveMemoryWarning()
     {
@@ -113,6 +112,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     @IBAction func SearchClicked(_ sender: Any)
     {
+        SearchResults.becomeFirstResponder()
         BusyIndicator.startAnimating()
         SearchButton.tintColor = UIColor.darkGray
         SearchButton.isEnabled = false
