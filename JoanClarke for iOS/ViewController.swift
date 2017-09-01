@@ -61,11 +61,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
             documentAttributes: nil)
         HelpLinkButton.setAttributedTitle(attrStr, for: UIControlState.normal)
         
-        SearchResults.frame = CGRect(x: ResultsBorderButton.frame.minX,
-                                     y: ResultsBorderButton.frame.minY + 30,
-                                     width: ResultsBorderButton.frame.width,
-                                     height:ResultsBottom.frame.maxY - 5 - (ResultsBorderButton.frame.minY + 30))
-        
+        RelayoutTabs()
     }
    
     override func didReceiveMemoryWarning()
@@ -194,89 +190,82 @@ class ViewController: UIViewController, UISearchBarDelegate {
 
     @IBAction func ToggleEnglishVisibile(_ sender: Any)
     {
-        let gap = CGFloat(33)
-        let buttonHeight = CGFloat(30)
-        let buttonBottom = CGFloat(5)
-        
-        let bottom = SearchResults.frame.maxY
-        let width = EnglishBorderButton.frame.width
-        let x = EnglishBorderButton.frame.minX
-        let y = EnglishBorderButton.frame.minY
-        
         EnglishExplanation.isHidden = !EnglishExplanation.isHidden;
         EnglishBottom.isHidden = EnglishExplanation.isHidden
-        
-        if (EnglishExplanation.isHidden)
-        {
-            EnglishBorderButton.frame = CGRect(x: x, y: y, width: width, height: buttonHeight)
-            
-            let resultTop =  y + buttonHeight + gap
-            let resultBottom = bottom + buttonBottom
-            
-            ResultsBorderButton.frame = CGRect(x: x, y: resultTop, width: width, height: bottom - resultTop - buttonBottom)
-            ResultsBottom.frame = CGRect(x: x, y: resultBottom - 2 * buttonBottom, width: width, height: buttonBottom * 2)
-            SearchResults.frame = CGRect(x: x, y: resultTop + buttonHeight, width: width, height: bottom - (resultTop + buttonHeight))
-        }
-        else
-        {
-            EnglishBorderButton.frame = CGRect(x: x, y: y, width: width, height: buttonHeight + buttonBottom)
-        
-            let resultTop =  EnglishBottom.frame.maxY + gap
-            let resultBottom = bottom + buttonBottom
-            
-            ResultsBorderButton.frame = CGRect(x: x, y: resultTop, width: width, height: bottom - resultTop - buttonBottom)
-            ResultsBottom.frame = CGRect(x: x, y: resultBottom - 2 * buttonBottom, width: width, height: buttonBottom * 2)
-            SearchResults.frame = CGRect(x: x, y: resultTop + buttonHeight, width: width, height: bottom - (resultTop + buttonHeight))
-        }
+        RelayoutTabs()
     }
     
     @IBAction func ToggleResultsVisible(_ sender: Any) {
-        let gap = CGFloat(33)
-        let buttonHeight = CGFloat(30)
-        let buttonBottom = CGFloat(5)
-        
-        let englishTop = EnglishBorderButton.frame.minY
-        let x = EnglishBorderButton.frame.minX
-        let width = EnglishBorderButton.frame.width
-        
         SearchResults.isHidden = !SearchResults.isHidden
         ResultsBottom.isHidden = SearchResults.isHidden
-
-        let resultsBottom = ResultsBottom.frame.maxY  // even if it's hidden
-
-        if (SearchResults.isHidden)  // collapsing
-        {
-            // Keep the bottom where it is, pull top down
-            let resultHeight = buttonHeight
-            ResultsBorderButton.frame = CGRect(x: x,
-                                               y: resultsBottom - resultHeight,
-                                               width: width,
-                                               height: resultHeight)
-        }
-        else  // expanding results
-        {
-            // Keep the bottom where it is, stretch top up
-            let resultHeight = SearchResults.frame.height + buttonHeight + buttonBottom;
-            ResultsBorderButton.frame = CGRect(x: x,
-                                               y: resultsBottom - resultHeight,
-                                               width: width,
-                                               height: buttonHeight * 2)
-        }
+        RelayoutTabs()
+    }
+    
+    func RelayoutTabs() {
         
-        let englishBottom = ResultsBorderButton.frame.minY - gap
+        let englishTop = EnglishBorderButton.frame.minY
+        let resultsBottom = ResultsBottom.frame.maxY;
+    
+        let gap = CGFloat(33)
+        let buttonHeight = CGFloat(30)
+        let buttonBottom = CGFloat(SearchButton.bounds.size.height / 4)
+        
+        let x = EnglishBorderButton.frame.minX
+        let width = EnglishBorderButton.frame.width
 
-        EnglishBottom.frame = CGRect(x: x,
-                                     y: englishBottom - buttonBottom * 2,
-                                     width: width,
-                                     height: buttonBottom * 2)
-        EnglishExplanation.frame = CGRect(x: x,
-                                          y: englishTop + buttonHeight,
-                                          width: width,
-                                          height: englishBottom - buttonBottom - (englishTop + buttonHeight))
-        EnglishBorderButton.frame = CGRect(x: x,
-                                          y: englishTop,
-                                          width: width,
-                                          height: buttonHeight * 2)
+        var englishHeight = buttonHeight;
+        var resultsHeight = buttonHeight;
+        var resultsTop = CGFloat(0);
+        
+        if (SearchResults.isHidden && EnglishExplanation.isHidden)
+        {
+            // Both collapsed
+            // results button is immediately below english
+            resultsTop = englishTop + englishHeight + gap;
+        }
+        else if (!SearchResults.isHidden && EnglishExplanation.isHidden)
+        {
+            // Top collapsed, bottom expanded
+            // results is immediately below english, and uses all remaining height
+            resultsTop = englishTop + englishHeight + gap;
+            resultsHeight = resultsBottom - resultsTop;
+        }
+        else if (SearchResults.isHidden && !EnglishExplanation.isHidden)
+        {
+            // Top expanded, buttom collapsed
+            // english uses all remaining height
+            resultsTop = resultsBottom - buttonHeight;
+            englishHeight = resultsTop - gap - englishTop;
+        }
+        else
+        {
+            // Both expanded
+            resultsTop = englishTop + (resultsBottom - englishTop) * 0.35;
+            resultsHeight = resultsBottom - resultsTop;
+            englishHeight = resultsTop - gap - englishTop;
+        }
+
+        // Place the english frame and borders
+        EnglishBorderButton.frame = CGRect(x: x, y: englishTop, width: width,
+                                           height: EnglishExplanation.isHidden ? buttonHeight : (buttonHeight * 2));
+        if (!EnglishExplanation.isHidden)
+        {
+            EnglishExplanation.frame = CGRect(x: x, y: englishTop + buttonHeight, width: width,
+                                              height: englishHeight - buttonHeight - buttonBottom);
+            EnglishBottom.frame = CGRect(x: x, y: englishTop + englishHeight - buttonHeight, width: width,
+                                         height: buttonHeight);
+        }
+
+        // Place the results frame and borders
+        ResultsBorderButton.frame = CGRect(x: x, y: resultsTop, width: width,
+                                           height: SearchResults.isHidden ? buttonHeight : (buttonHeight * 2));
+        if (!SearchResults.isHidden)
+        {
+            SearchResults.frame = CGRect(x: x, y: resultsTop + buttonHeight, width: width,
+                                              height: resultsHeight - buttonHeight - buttonBottom);
+            ResultsBottom.frame = CGRect(x: x, y: resultsBottom - buttonHeight, width: width,
+                                         height: buttonHeight);
+        }
     }
 }
 
