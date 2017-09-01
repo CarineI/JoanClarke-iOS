@@ -63,6 +63,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
         RelayoutTabs()
     }
+    
    
     override func didReceiveMemoryWarning()
     {
@@ -265,6 +266,10 @@ class ViewController: UIViewController, UISearchBarDelegate {
                                               height: resultsHeight - buttonHeight - buttonBottom);
             ResultsBottom.frame = CGRect(x: x, y: resultsBottom - buttonHeight, width: width,
                                          height: buttonHeight);
+            
+            BusyIndicator.frame = CGRect(x: SearchResults.frame.minX + ((SearchResults.frame.width - BusyIndicator.frame.width) / 2),
+                                         y: SearchResults.frame.minY + ((SearchResults.frame.height - BusyIndicator.frame.height) / 2) ,
+                                         width: BusyIndicator.frame.width, height: BusyIndicator.frame.height)
         }
     }
 }
