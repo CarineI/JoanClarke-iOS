@@ -22,28 +22,36 @@ class WordDict
     func LoadFromBundle(full : Bool)
     {
         let bundle = Bundle.main
-        let path = full ? bundle.path(forResource: "FullDictionary", ofType: "txt")
+        let pathFull = full ? bundle.path(forResource: "FullDictionary", ofType: "txt")
             : bundle.path(forResource: "StubDict", ofType: "txt")
+        
+        let pathLenSort = bundle.path(forResource: "LengthSortedFullDictionary", ofType: "txt")
 
         do
         {
-            let txt = try String(contentsOfFile: path!).uppercased()
-            let temp = txt.components(separatedBy: "\r\n")
-            _wordListAlpha.append(contentsOf: temp)
-            _wordListAlpha.sort()
+            let txtFull = try String(contentsOfFile: pathFull!).uppercased()
+            let tempFull = txtFull.components(separatedBy: "\r\n")
+            _wordListAlpha.append(contentsOf: tempFull)
+            //_wordListAlpha.sort()
             
             while (_wordListAlpha[0].characters.count == 0)
             {
                 _wordListAlpha.remove(at: 0)
             }
             
-            _wordListLength.append(contentsOf: temp)
+            
+            
+            let txtLenSort = try String(contentsOfFile: pathLenSort!).uppercased()
+            let tempLenSort = txtLenSort.components(separatedBy: "\r\n")
+            _wordListLength.append(contentsOf: tempLenSort)
+            /*_wordListLength.append(contentsOf: temp)
             _wordListLength.sort(by: { s1, s2 in
                 if (s1.characters.count !=  s2.characters.count)
                 {
                     return s1.characters.count <  s2.characters.count
                 }
                return  (s1.compare(s2) == ComparisonResult.orderedAscending) })
+             */
 
             while (_wordListLength[0].characters.count == 0)
             {
