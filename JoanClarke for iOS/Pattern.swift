@@ -15,14 +15,11 @@ class Pattern
     fileprivate var _tokenStack : [Token]
     
     fileprivate var _letterMask : UInt32
-    
-    var _debug : Int32
 
     init(raw : String) throws
     {
         _raw = raw
         _tokenStack = []
-        _debug = 0
         
         var index = raw.characters.startIndex
         let end = raw.characters.endIndex
@@ -69,7 +66,6 @@ class Pattern
         while (progress < _tokenStack.count)
         {
             let token = _tokenStack[progress]
-            _debug += 1
             let match = try token.MatchSequential(candidate)
             if (match)
             {

@@ -139,9 +139,6 @@ class ViewController: UIViewController, UISearchBarDelegate {
             SearchResults.text = text
             SearchResults.textColor = UIColor.black
             SearchResults.flashScrollIndicators()
-            BusyIndicator.stopAnimating()
-            SearchButton.tintColor = UIColor.white
-            SearchButton.isEnabled = true
         }
         catch PatternError.unrecognizedToken(let token)
         {
@@ -153,6 +150,10 @@ class ViewController: UIViewController, UISearchBarDelegate {
             SearchResults.text = "Unknown exception"
             SearchResults.textColor = UIColor.red
         }
+        
+        BusyIndicator.stopAnimating()
+        SearchButton.tintColor = UIColor.white
+        SearchButton.isEnabled = true
     }
     
     @IBAction func OnDotButton(_ sender: Any)
