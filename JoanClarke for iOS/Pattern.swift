@@ -13,11 +13,16 @@ class Pattern
     fileprivate var _raw : String
     
     fileprivate var _tokenStack : [Token]
+    
+    fileprivate var _letterMask : UInt32
+    
+    var _debug : Int32
 
     init(raw : String) throws
     {
         _raw = raw
         _tokenStack = []
+        _debug = 0
         
         var index = raw.characters.startIndex
         let end = raw.characters.endIndex
@@ -44,17 +49,27 @@ class Pattern
                 i += 1;
             }
         }
+        
+        // TODO: treat each word in pattern separately
+        _letterMask = Word.CalcLetterMask(str: raw.uppercased())
     }
     
-    func Match(word: String) throws  -> Bool
+    func Match(word: Word) throws  -> Bool
     {
-        let candidate = Candidate(word: word)
+        if ((_letterMask & word.LetterMask) != _letterMask)
+        {
+            // We know that the word doesn't have all the letters we want
+            return false;
+        }
+        
+        let candidate = Candidate(word: word.Normalized)
         
         var progress = 0
         
         while (progress < _tokenStack.count)
         {
             let token = _tokenStack[progress]
+            _debug += 1
             let match = try token.MatchSequential(candidate)
             if (match)
             {

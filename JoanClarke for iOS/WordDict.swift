@@ -10,8 +10,8 @@ import Foundation
 
 class WordDict
 {
-    var _wordListAlpha: [String]
-    var _wordListLength : [String]
+    var _wordListAlpha: [Word]
+    var _wordListLength : [Word]
  
     init()
     {
@@ -31,31 +31,29 @@ class WordDict
         {
             let txtFull = try String(contentsOfFile: pathFull!).uppercased()
             let tempFull = txtFull.components(separatedBy: "\r\n")
-            _wordListAlpha.append(contentsOf: tempFull)
-            //_wordListAlpha.sort()
             
-            while (_wordListAlpha[0].characters.count == 0)
+            //_wordListAlpha.append(contentsOf: tempFull)
+            _wordListAlpha.reserveCapacity(tempFull.count)
+            for temp in tempFull
             {
-                _wordListAlpha.remove(at: 0)
+                if (temp.characters.count > 0)
+                {
+                    let w = Word(str: temp)
+                    _wordListAlpha.append(w)
+                }
             }
-            
-            
             
             let txtLenSort = try String(contentsOfFile: pathLenSort!).uppercased()
             let tempLenSort = txtLenSort.components(separatedBy: "\r\n")
-            _wordListLength.append(contentsOf: tempLenSort)
-            /*_wordListLength.append(contentsOf: temp)
-            _wordListLength.sort(by: { s1, s2 in
-                if (s1.characters.count !=  s2.characters.count)
-                {
-                    return s1.characters.count <  s2.characters.count
-                }
-               return  (s1.compare(s2) == ComparisonResult.orderedAscending) })
-             */
 
-            while (_wordListLength[0].characters.count == 0)
+            //_wordListLength.append(contentsOf: tempLenSort)
+            _wordListLength.reserveCapacity(tempLenSort.count)
+            for temp in tempLenSort
             {
-                _wordListLength.remove(at: 0)
+                if (temp.characters.count > 0)
+                {
+                    _wordListLength.append(Word(str: temp))
+                }
             }
         }
         catch
@@ -103,7 +101,7 @@ class WordDict
                 let word = dictionary[i]
                 if (try pattern.Match(word: word))
                 {
-                    results.append(dictionary[i])
+                    results.append(word.Original)
                 }
             }
         }
@@ -122,12 +120,12 @@ class WordDict
     
     private func LongestWordLength() -> Int
     {
-        return _wordListLength[_wordListLength.count - 1].characters.count
+        return _wordListLength[_wordListLength.count - 1].Normalized.characters.count
     }
     
     /// Find either the index of the first word that matches the prefix,
     /// or (if after == true), the first word after any matches
-    private func BinarySearch(dictionary: [String], prefix: String, firstIndex: Int, lastIndex: Int, after: Bool) -> Int
+    private func BinarySearch(dictionary: [Word], prefix: String, firstIndex: Int, lastIndex: Int, after: Bool) -> Int
     {
         var first = firstIndex
         var last = lastIndex
@@ -140,7 +138,7 @@ class WordDict
         while (first < last)
         {
             let mid = (first + last) / 2
-            var word = dictionary[mid]
+            var word = dictionary[mid].Normalized
             if (word.characters.count > prefix.characters.count)
             {
                 word = word.substring(to: prefix.endIndex)
@@ -177,7 +175,7 @@ class WordDict
         while (first < last)
         {
             let mid = (first + last) / 2
-            let length = _wordListLength[mid].characters.count
+            let length = _wordListLength[mid].Normalized.characters.count
             if (length < minLength)
             {
                 // this word is shorter than we want

@@ -15,6 +15,7 @@
 		D50A40E91DB1B237005D26C9 /* LetterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50A40E81DB1B237005D26C9 /* LetterSet.swift */; };
 		D50A40EB1DB1C855005D26C9 /* LetterSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50A40EA1DB1C855005D26C9 /* LetterSetTests.swift */; };
 		D5396F501D8A2AFC003EF0CB /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5396F4F1D8A2AFC003EF0CB /* Claim.swift */; };
+		D55A057A1F7C77FD002D6311 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55A05791F7C77FD002D6311 /* Word.swift */; };
 		D563B5D81E023F3C00690051 /* WordDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = D563B5D71E023F3C00690051 /* WordDict.swift */; };
 		D563B5DC1E0241DA00690051 /* WordDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D563B5DB1E0241DA00690051 /* WordDictTests.swift */; };
 		D58801CD1E70E89000EFB73E /* StarToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58801CC1E70E89000EFB73E /* StarToken.swift */; };
@@ -76,6 +77,7 @@
 		D50A40E81DB1B237005D26C9 /* LetterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSet.swift; sourceTree = "<group>"; };
 		D50A40EA1DB1C855005D26C9 /* LetterSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSetTests.swift; sourceTree = "<group>"; };
 		D5396F4F1D8A2AFC003EF0CB /* Claim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
+		D55A05791F7C77FD002D6311 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		D563B5D71E023F3C00690051 /* WordDict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDict.swift; sourceTree = "<group>"; };
 		D563B5DB1E0241DA00690051 /* WordDictTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDictTests.swift; sourceTree = "<group>"; };
 		D58801CC1E70E89000EFB73E /* StarToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarToken.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				D5063F4B1E44157000D0F05D /* EndToken.swift */,
 				D58801CC1E70E89000EFB73E /* StarToken.swift */,
 				D5F819281E8351B800A20DC3 /* AnagramToken.swift */,
+				D55A05791F7C77FD002D6311 /* Word.swift */,
 			);
 			name = Src;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				D5D9E3A11D6545300049BA65 /* AppDelegate.swift in Sources */,
 				D5F851F41DC185E6008D1B5F /* Rule.swift in Sources */,
 				D5063F481E440B6B00D0F05D /* Pattern.swift in Sources */,
+				D55A057A1F7C77FD002D6311 /* Word.swift in Sources */,
 				D5B57E281DD5798D00381BC2 /* Token.swift in Sources */,
 				D58801CD1E70E89000EFB73E /* StarToken.swift in Sources */,
 			);
