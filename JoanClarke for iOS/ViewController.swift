@@ -187,7 +187,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
     
     @IBAction func helpTouchUpInside(_ sender: Any) {
-        UIApplication.shared.openURL(NSURL(string:"http://joanclarke.info")! as URL)
+        UIApplication.shared.open((NSURL(string:"http://joanclarke.info")! as URL))
     }
 
     @IBAction func ToggleEnglishVisibile(_ sender: Any)
