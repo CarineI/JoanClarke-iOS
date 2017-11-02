@@ -63,8 +63,10 @@ class WordDict
         
     }
     
-    func DoSearch(pattern : Pattern) -> [String]
+    func DoSearch(pattern : Pattern, rules: [Rule]) -> [String]
     {
+        Rule.ApplyAllRules(rules: rules)
+        
         var first = _wordListAlpha.startIndex
         var last = _wordListAlpha.endIndex
      

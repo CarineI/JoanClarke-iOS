@@ -159,4 +159,39 @@ class Pattern
         return builder
     }
     
+    static func ParsePatternAndRules(rawInput: String, rules: inout [Rule]) throws -> Pattern
+    {
+        let terms = rawInput.characters.split(separator: " ")
+        var pattern: Pattern?
+        
+        for term in terms
+        {
+            let trimmed = String(term).trimmingCharacters(in: NSCharacterSet.whitespaces)
+            if (trimmed.characters.count == 0)
+            {
+                continue
+            }
+            if (trimmed.contains("="))
+            {
+                let rule = try Rule(raw: trimmed)
+                rule.Apply()
+                rules.append(rule)
+            }
+            else
+            {
+                pattern = try Pattern(raw: trimmed)
+                // TODO: handle prevPattern
+            }
+        }
+        
+        if (pattern == nil)
+        {
+            pattern = try Pattern(raw: "")
+        }
+
+        // We were applything rules while parsing, but free them now so caller has a blank slate
+        Rule.ClearAllRules()
+
+        return pattern!;
+    }
 }

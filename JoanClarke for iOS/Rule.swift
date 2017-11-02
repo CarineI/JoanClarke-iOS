@@ -37,12 +37,21 @@ class Rule
     static func ClearAllRules()
     {
         // clear rules for token types
+        DotToken.ClearRules()
+        StarToken.ClearRules()
+        CryptoToken.ClearRules()
     }
     
-    static func ApplyAllRules()
+    static func ApplyAllRules(rules: [Rule])
     {
+        ClearAllRules()
+        
         // take in list of rules
         // apply each rule
+        for rule in rules
+        {
+            rule.Apply()
+        }
     }
     
     fileprivate var _tokenChars : String
@@ -368,5 +377,27 @@ class Rule
             return b
         }
         return a
+    }
+    
+    func Apply()
+    {
+        for tok in _tokenChars
+        {
+            let strTok = String(tok)
+            // TODO: EndToken.IsWordToken
+            if (DotToken.IsToken(ch: strTok) || IsDotRedefine)
+            {
+                DotToken.ApplyRule(strTok, rule: self)
+            }
+            else if (tok == "*")
+            {
+                StarToken.ApplyRule(rule: self)
+            }
+            else if (CryptoToken.IsToken(ch: strTok) || IsCryptoRedefine)
+            {
+                CryptoToken.ApplyRule(strTok, rule: self)
+            }
+            // else RepeatSequenceToken
+        }
     }
 }

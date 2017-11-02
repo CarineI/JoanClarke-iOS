@@ -127,8 +127,11 @@ class ViewController: UIViewController, UISearchBarDelegate {
     {
         do{
             let trimmed = InputField.text!.trimmingCharacters(in: NSCharacterSet.whitespaces)
-            let pattern =  try Pattern(raw: trimmed)
-            let searchResults = dict!.DoSearch(pattern: pattern)
+            
+            var rules = [Rule]()
+            let pattern = try Pattern.ParsePatternAndRules(rawInput: trimmed, rules: &rules)
+            
+            let searchResults = dict!.DoSearch(pattern: pattern, rules: rules)
             var text  = ""
             for result in searchResults
             {
